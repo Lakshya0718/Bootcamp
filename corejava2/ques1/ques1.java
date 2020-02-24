@@ -2,10 +2,13 @@ package ques1;
 //1. Create Java classes having suitable attributes for Library management system.Use OOPs concepts in your design.
 // Also try to use interfaces and abstract classes.
 
+//have to show polymorphism
+
 abstract class Library {
 
     String bookName;
     int bookID;
+    abstract public void issueBook(int bookID , String bookName);
 }
 
 class Student extends Library {
@@ -22,6 +25,8 @@ class Student extends Library {
         this.studentName = studentName;
 
     }
+
+    @Override
     public void issueBook(int bookID , String bookName){
         this.bookID = bookID;
         this.bookName = bookName;
