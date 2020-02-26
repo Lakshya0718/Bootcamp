@@ -1,2 +1,0 @@
-include ':app', ':module1'
-rootProject.name='DemoApp'
