@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">SignupApp</string>
+    <string name="signin">Get me In!</string>
+    <string name="name">Name</string>
+    <string name="login">Login</string>
+    <string name="password">password</string>
+    <string name="email">Email</string>
+    <string name="phno">Phone Number</string>
+    <string name="home">Home</string>
+    <string name="name1">Name</string>
+    <string name="email1">Email</string>
+    <string name="phno2">Phone Number</string>
+    <string name="search">Search</string>
+    <string name="permissions">Permissions</string>
+    <string name="ss">Write the site</string>
+
+</resources>
