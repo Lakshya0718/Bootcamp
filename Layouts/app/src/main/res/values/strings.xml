@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Layouts</string>
+    <string name="appname">Foodie App</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="t1">Don\'t Have Account</string>
+    <string name="ice_cream_sundae">Ice Cream Sundae</string>
+    <string name="moi">145, Mall Of India</string>
+    <string name="rev">520 reviews</string>
+</resources>
