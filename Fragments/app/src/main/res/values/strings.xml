@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Fragments</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello">Hello </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_2">hello 2</string>
+    <string name="click">Click Here</string>
+    <string name="click2">again click</string>
+    <string name="fragment2comment">Fragment 2 is open</string>
+    <string name="go_to_2nd_frag">Go to 2nd frag</string>
+    <string name="again">again</string>
+</resources>
