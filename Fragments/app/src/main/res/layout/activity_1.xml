@@ -28,7 +28,7 @@
         android:id="@+id/b1"
         android:onClick="openf1"
         android:layout_marginTop="10dp"
-        android:text="@string/click"
+        android:text="@string/fragment1"
         android:textSize="20sp"/>
 
     <Button
@@ -36,18 +36,35 @@
         android:layout_height="wrap_content"
         android:id="@+id/b2"
         android:layout_marginTop="20dp"
-        android:text="@string/click2"
+        android:text="@string/fragment2"
         android:onClick="openf2"
         android:textSize="20sp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/b4"
+            android:layout_marginTop="20dp"
+            android:text="@string/hide"
+            android:onClick="open4"
+            android:textSize="20sp"/>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/b3"
-            android:text="@string/again"
+            android:text="@string/show"
             android:textSize="20sp"
             android:onClick="open3"
             android:layout_marginTop="20dp"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/b5"
+            android:layout_marginTop="20dp"
+            android:text="@string/remove"
+            android:onClick="open5"
+            android:textSize="20sp"/>
 </LinearLayout>
-
 </LinearLayout>

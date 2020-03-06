@@ -12,4 +12,9 @@
     <string name="fragment2comment">Fragment 2 is open</string>
     <string name="go_to_2nd_frag">Go to 2nd frag</string>
     <string name="again">again</string>
+    <string name="fragment1">fragment1</string>
+    <string name="fragment2">Fragment2</string>
+    <string name="hide">Hide</string>
+    <string name="show">Show</string>
+    <string name="remove">Remove</string>
 </resources>

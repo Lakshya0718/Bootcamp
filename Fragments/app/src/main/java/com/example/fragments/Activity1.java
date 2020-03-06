@@ -13,26 +13,30 @@ import android.widget.Toast;
 
 public class Activity1 extends AppCompatActivity {
 
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction ;
+    Fragment1 fragment;
+    fragment2 fragment2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_1);
-
+        fragment = new Fragment1();
+        fragment2 = new fragment2();
     }
 
     public void openf1(View view) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        Fragment1 fragment = new Fragment1();
-        fragmentTransaction.replace(R.id.frame1, fragment, "fragment12");
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.frame1, fragment, "fragment12");
         fragmentTransaction.addToBackStack("Fragment1");
         fragmentTransaction.commit();
     }
 
     public void openf2(View view) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragment2 fragment2 = new fragment2();
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame1, fragment2);
 //        fragmentTransaction.add(R.id.frame1, fragment2);
 //        fragmentTransaction.hide(fragment2);
@@ -43,8 +47,25 @@ public class Activity1 extends AppCompatActivity {
     }
 
     public void open3(View view) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        Toast.makeText(this, fragmentManager.findFragmentByTag("fragment12").toString(), Toast.LENGTH_SHORT).show();
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.show(fragment2);
+        fragmentTransaction.commit();
+    }
 
+    public void open4(View view) {
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.hide(fragment2);
+        fragmentTransaction.commit();
+    }
+
+    public void open5(View view) {
+
+//        fragmentManager.popBackStack();
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.remove(fragment2);
+        fragmentTransaction.commit();
     }
 }

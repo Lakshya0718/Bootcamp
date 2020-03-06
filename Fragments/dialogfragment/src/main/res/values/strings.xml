@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DialogFragment</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="coco">Hey!</string>
+    <string name="show_dialog">Show Dialog</string>
+    <string name="nextfrag">nextFrag</string>
+</resources>
