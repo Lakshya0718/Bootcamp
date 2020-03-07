@@ -16,9 +16,7 @@ public class dialogFrag extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        int style, theme = android.R.style.Theme_DeviceDefault;
-        ;
-        style = DialogFragment.STYLE_NORMAL;
+        int style = DialogFragment.STYLE_NORMAL, theme = android.R.style.Theme_DeviceDefault_Dialog;
 
         setStyle(style, theme);
     }
