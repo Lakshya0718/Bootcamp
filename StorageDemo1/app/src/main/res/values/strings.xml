@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">StorageDemo1</string>
+    <string name="textview">Text to view</string>
+    <string name="textview1" />
+    <string name="write_text">Write Text</string>
+    <string name="submit">Submit</string>
+    <string name="retrieve">Retrieve</string>
+    <string name="display">Store And Display</string>
+</resources>
