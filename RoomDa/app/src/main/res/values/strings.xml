@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">RoomDatabase</string>
+    <string name="insert_name">Insert Name</string>
+    <string name="insert_city">Insert City</string>
+    <string name="mobileNo">Insert Mobile No</string>
+    <string name="submit">Submit</string>
+    <string name="employee">Employee1</string>
+    <string name="address">address</string>
+    <string name="num">1234567890</string>
+    <string name="aaa">⋮</string>
+</resources>
