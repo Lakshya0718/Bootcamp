@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "21719047498",
+    "firebase_url": "https://gallerio-e24d1.firebaseio.com",
+    "project_id": "gallerio-e24d1",
+    "storage_bucket": "gallerio-e24d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:21719047498:android:28fe89a2d25a877b9a75b3",
+        "android_client_info": {
+          "package_name": "com.examples.gallerio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "21719047498-h2lffl11tngt72ieg7u3n1flrr4b209j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeApUkS_zNGVANrFtb68EHlqedGo0YS64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "21719047498-h2lffl11tngt72ieg7u3n1flrr4b209j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
