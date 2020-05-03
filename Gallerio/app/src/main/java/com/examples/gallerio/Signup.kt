@@ -11,94 +11,69 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.fragment_login.*
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.examples.gallerio.ViewModel.FirebaseViewModel
+
+
 
 class Signup : Fragment() {
 
-    lateinit var mAuth: FirebaseAuth
-    lateinit var db:FirebaseFirestore
+    private lateinit var mViewModel: FirebaseViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mAuth = FirebaseAuth.getInstance()
 
         val view: View = inflater.inflate(R.layout.fragment_signup, container, false)
 
+       // mViewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
+
+        val loginProgress: ProgressBar = view.findViewById(R.id.loginProgress)
+
         var nameTextView: AppCompatEditText = view.findViewById(R.id.name)
         var emailTextView: AppCompatEditText = view.findViewById(R.id.email)
-        var passwordTextView: AppCompatEditText = view.findViewById(R.id.pass)
-        var mobileNoTextView: AppCompatEditText = view.findViewById(R.id.phno)
+        var passwordTextView: AppCompatEditText = view.findViewById(R.id.password)
+
         var signinBtn: AppCompatButton = view.findViewById(R.id.registerbtn)
         var loginBtn: AppCompatTextView = view.findViewById(R.id.signintxt)
 
+        loginProgress.alpha = 0F
 
         signinBtn.setOnClickListener {
-
+            loginProgress.alpha = 1F
             var name: String = nameTextView.text.toString()
             var email: String = emailTextView.text.toString()
             var password: String = passwordTextView.text.toString()
-            var mobileno: String = mobileNoTextView.text.toString()
 
-            signin(name, email, mobileno, password)
+            if (email.isNotEmpty() && password.isNotEmpty() && name.isNotEmpty()){
+                mViewModel.signin(email, password, name)
+                loginProgress.alpha = 0F
+                startActivity(Intent(activity, MainActivity::class.java))
+                Toast.makeText(activity, "Signin Successfull!", Toast.LENGTH_SHORT).show()
+            }else{
+                loginProgress.alpha = 0F
+                Toast.makeText(activity, "Invalid Credentials!", Toast.LENGTH_SHORT).show()
 
+            }
         }
 
+        loginBtn.setOnClickListener {
+            moveToLogin()
+        }
 
         return view
     }
 
-
-    private fun signin(name: String, email: String, mobileno: String, password: String) {
-
-        activity?.let {
-            mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(it) { task ->
-                    if (task.isSuccessful) {
-                        var currentUid: String = mAuth.currentUser?.uid.toString()
-                        addToDatabase(name, email, mobileno, currentUid)
-
-                    } else {
-                        Toast.makeText(activity, task.exception?.message.toString(), Toast.LENGTH_SHORT).show()
-                    }
-                }
-        }
-
+    private fun moveToLogin() {
+        val fragmentManager: FragmentManager? = fragmentManager
+        val transaction: FragmentTransaction? = fragmentManager?.beginTransaction()
+        val loginFragment = Login()
+        transaction?.replace(R.id.framecontainer, loginFragment)
+        transaction?.commit()
     }
-
-    private fun addToDatabase(name: String, email: String, mobileno: String, currentUid: String ) {
-
-        db = FirebaseFirestore.getInstance()
-
-        var user = UserModel(name, email, mobileno)
-
-        activity?.let {
-            db.collection("Users").document(currentUid)
-                .set(user)
-                .addOnSuccessListener {
-                    loginProgress.alpha = 0F
-                    startActivity(Intent(activity, MainActivity::class.java))
-                    Toast.makeText(
-                        activity,
-                        "Signin Successfull!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                .addOnFailureListener(it) { exception ->
-                    Toast.makeText(
-                        activity,
-                        exception.message.toString(), Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-        }
-    }
-
 
 }
-
-
-

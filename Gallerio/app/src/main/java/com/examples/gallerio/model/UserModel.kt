@@ -1,4 +1,4 @@
-package com.examples.gallerio
+package com.examples.gallerio.model
 
 import androidx.lifecycle.LiveData
 

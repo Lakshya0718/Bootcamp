@@ -20,4 +20,8 @@
     <string name="confirm_passowrd">Confirm Passowrd</string>
     <string name="phno">Mobile No.</string>
     <string name="update_profile_pic">Update Profile pic</string>
+    <string name="forget_password">forget password</string>
+    <string name="send_mail_to_reset_password">Send mail to reset password</string>
+    <string name="add_image">Add Image</string>
+    <string name="take_photo">Take Photo</string>
 </resources>
