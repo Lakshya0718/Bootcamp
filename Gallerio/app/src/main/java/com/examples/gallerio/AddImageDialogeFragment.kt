@@ -39,7 +39,7 @@ class AddImageDialogeFragment : DialogFragment() {
         val selectPhotoBtn: AppCompatButton = rootView.findViewById(R.id.selectImage)
 
         val addBtn: AppCompatButton = rootView.findViewById(R.id.addDialogBtn)
-        val cancelBtn: AppCompatButton = rootView.findViewById(R.id.cancelDialogBtn)
+        val cancelBtn: AppCompatButton = rootView.floginbtnstyleindViewById(R.id.cancelDialogBtn)
 
         cancelBtn.setOnClickListener {
             dialog?.dismiss()
