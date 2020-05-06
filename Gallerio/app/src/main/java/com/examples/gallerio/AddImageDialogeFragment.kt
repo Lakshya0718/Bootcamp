@@ -10,11 +10,11 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.anupam.viewModel.FirebaseViewModel
-import com.examples.gallerio.ViewModel.FirebaseViewModel
+import com.examples.gallerio.viewModel.FirebaseViewModel
 import java.io.ByteArrayOutputStream
 
 
@@ -31,22 +31,22 @@ class AddImageDialogeFragment : DialogFragment() {
 
         mViewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
 
-        val positionBundel: Bundle? = arguments
-        var categoryName: String = positionBundel?.get("categoryName") as String
+        val positionBundle: Bundle? = arguments
+        val categoryName: String = positionBundle?.get("categoryName") as String
         val rootView: View = inflater.inflate(R.layout.fragment_add_image_dialoge, container, false)
 
         val takePhotoBtn: AppCompatButton = rootView.findViewById(R.id.takePhoto)
         val selectPhotoBtn: AppCompatButton = rootView.findViewById(R.id.selectImage)
 
         val addBtn: AppCompatButton = rootView.findViewById(R.id.addDialogBtn)
-        val cancelBtn: AppCompatButton = rootView.floginbtnstyleindViewById(R.id.cancelDialogBtn)
+        val cancelBtn: AppCompatButton = rootView.findViewById(R.id.cancelDialogBtn)
 
         cancelBtn.setOnClickListener {
             dialog?.dismiss()
         }
 
         takePhotoBtn.setOnClickListener {
-            val intent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(intent, 1)
             takePhotoBtn.isEnabled = false
             selectPhotoBtn.isEnabled = false
@@ -61,8 +61,9 @@ class AddImageDialogeFragment : DialogFragment() {
         }
 
         addBtn.setOnClickListener {
-            var imageName = "${getRandomString(10)}+.jpg"
-            imageUri?.let { it1 -> mViewModel.addNewImage(categoryName, it1, imageName) }
+            val imageName = "${getRandomString(10)}+.jpg"
+            imageUri?.let { it1 -> mViewModel.addNewImage(categoryName, it1, imageName)
+                Toast.makeText(MainActivity(), "Image Added", Toast.LENGTH_SHORT).show()}
         }
 
         return rootView
@@ -75,7 +76,7 @@ class AddImageDialogeFragment : DialogFragment() {
                 1 -> {
                         //code Working
 //                        var photo: Bitmap = data?.extras?.get("data") as Bitmap
-                    var photo: Bitmap = data?.extras?.get("data") as Bitmap
+                    val photo: Bitmap = data?.extras?.get("data") as Bitmap
                     imageUri = getImageUri(context, photo)
 
                 }

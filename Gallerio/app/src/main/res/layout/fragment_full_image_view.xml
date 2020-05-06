@@ -19,6 +19,6 @@
         android:padding="10dp"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:background="@drawable/ic_close_foreground"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>

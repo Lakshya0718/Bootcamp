@@ -10,12 +10,14 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.examples.gallerio.ViewModel.FirebaseViewModel
+import com.examples.gallerio.model.UserModel
+import com.examples.gallerio.viewModel.FirebaseViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
+@Suppress("DEPRECATION")
 class AccountFragment: Fragment() {
 
     private lateinit var mViewModel: FirebaseViewModel
@@ -35,12 +37,6 @@ class AccountFragment: Fragment() {
 
         mViewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
 
-//        dbRef.get()
-//            .addOnSuccessListener { documents ->
-//                    val categoryModel = documents.toObject(CategoryModel::class.java)
-//                    Picasso.get().load(categoryModel?.catImage).into(profileImageView)
-//                    Log.d("CatList", categoryModel?.catImage)
-//            }
 
         var view: View = inflater.inflate(R.layout.fragment_account, container, false)
 
@@ -48,13 +44,12 @@ class AccountFragment: Fragment() {
         val mName: AppCompatTextView = view.findViewById(R.id.userName)
         val mEmail: AppCompatTextView = view.findViewById(R.id.userEmail)
         val mLogout: AppCompatButton = view.findViewById(R.id.logoutBtn)
-
         mViewModel.loadUserData().addOnSuccessListener {
             var user = it.toObject(UserModel::class.java)
             mName.text = user?.name
             mEmail.text = user?.email
-            Log.d("ProfileImage", user?.profileImageUrl)
-            Picasso.get().load(user?.profileImageUrl).placeholder(R.color.accentLight).into(profileImageView)
+        //    Log.d("ProfileImage", user?.profileImageUrl)
+            Picasso.get().load(user?.profileImageUrl).placeholder(R.color.accent).into(profileImageView)
 
         }
 
@@ -65,10 +60,13 @@ class AccountFragment: Fragment() {
         mLogout.setOnClickListener {
             mViewModel.logout()
             startActivity(Intent(activity, MainActivity::class.java))
+
         }
 
         return view
     }
+
+
 
     private fun selectImage() {
         val addProfileImageDialogFragment: AddProfileImageDialogFragment = AddProfileImageDialogFragment()

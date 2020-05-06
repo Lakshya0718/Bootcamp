@@ -13,7 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.examples.gallerio.ViewModel.FirebaseViewModel
+import com.examples.gallerio.viewModel.FirebaseViewModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -81,7 +81,7 @@ class CategoryDialogeFragment : DialogFragment() {
             }else{
                 dialog?.dismiss()
                 mViewModel.addCategory(catImageUri!!, categoryName, getCategoryId(categoryName))
-//                Toast.makeText(MainActivity(), "Category Added!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(MainActivity(), "Category Added!", Toast.LENGTH_SHORT).show()
                 imagePath = catImage?.path.toString()
 
             }

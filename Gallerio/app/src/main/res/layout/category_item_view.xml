@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="2dp"
-    app:cardCornerRadius="@dimen/cardview_default_radius"
+    app:cardCornerRadius="20dp"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground">
+    android:foreground="?android:attr/selectableItemBackground"
+    android:focusable="true">
 
     <LinearLayout
         android:orientation="vertical"
@@ -21,13 +23,16 @@
             android:scaleType="fitXY"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            android:src="@color/hintAccentLight"/>
+            android:src="@color/hintAccentLight"
+            android:contentDescription="@string/img"
+            android:focusable="true"
+            tools:ignore="UnusedAttribute" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/singleCategoryName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title"
+            android:text="@string/title"
             android:textColor="@color/accentLight"
             android:inputType="textCapWords"
             android:textSize="20sp"

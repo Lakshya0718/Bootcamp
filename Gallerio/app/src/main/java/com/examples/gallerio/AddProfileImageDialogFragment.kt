@@ -13,8 +13,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.anupam.viewModel.FirebaseViewModel
-import com.examples.gallerio.ViewModel.FirebaseViewModel
+import com.examples.gallerio.viewModel.FirebaseViewModel
 import java.io.ByteArrayOutputStream
 
 
@@ -68,6 +67,7 @@ class AddProfileImageDialogFragment : DialogFragment() {
 
         return view
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

@@ -17,14 +17,11 @@ import com.squareup.picasso.Picasso
 class CategoryAdapter(private val mContext: Context, categoryFragment: CategoryFragment): RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     private lateinit var mCategoryDataSet: List<CategoryModel>
-    private var categoryFragment: CategoryFragment
+    private var categoryFragment: CategoryFragment = categoryFragment
 
     fun setCategories(category:List<CategoryModel>){
         mCategoryDataSet = category
         notifyDataSetChanged()
-    }
-    init{
-        this.categoryFragment = categoryFragment
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -37,7 +34,7 @@ class CategoryAdapter(private val mContext: Context, categoryFragment: CategoryF
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Picasso.get().load(mCategoryDataSet[position].catImage).placeholder(R.color.placeholderBackgroung).into(holder.categoryImage)
+        Picasso.get().load(mCategoryDataSet[position].catImage).placeholder(R.color.accentLight).into(holder.categoryImage)
         holder.categoryName.text = mCategoryDataSet[position].catId
         holder.categoryImage.setOnClickListener {
             goToDetails(mCategoryDataSet[position].catId, it)

@@ -12,9 +12,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Enter Category Name"
+            android:text="@string/enter_category_name"
             android:fontFamily="@font/almendra_bold"
             android:textColor="@color/primary"/>
 
@@ -24,23 +24,27 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:padding="10dp"
-            android:background="@drawable/gradient"
+            android:background="@color/white"
             android:gravity="center"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hintAccent"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/dialogtitle"
-            android:hint="Category Name"/>
+            android:hint="@string/category_name"
+            android:autofillHints=""
+            android:inputType="text" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/addCatImageBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginLeft="16dp"
-            android:text="Add Image"
+            android:layout_marginStart="16dp"
+            android:text="@string/add_image"
             android:fontFamily="@font/almendra_bold"
             android:textAllCaps="false"
             android:textSize="20sp"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:background="@android:color/transparent"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_below="@id/categoryName"
@@ -53,14 +57,14 @@
         android:orientation="horizontal"
         android:layout_below="@id/addCatImageBtn"
         android:padding="5dp"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentEnd="true">
 
         <Button
             android:id="@+id/cancelCategoryDialogBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="cancel"
+            android:text="@string/cancel"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:background="@android:color/transparent"/>
 
@@ -69,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Add"
+            android:text="@string/add"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:background="@android:color/transparent"/>
 

@@ -2,7 +2,6 @@ package com.examples.gallerio
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.examples.gallerio.ViewModel.FirebaseViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.examples.gallerio.viewModel.FirebaseViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -31,6 +31,9 @@ class Login : Fragment() {
 
         mAuth = FirebaseAuth.getInstance()
         val view: View = inflater.inflate(R.layout.fragment_login, container, false)
+
+        mViewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
+
         val loginProgress: ProgressBar = view.findViewById(R.id.loginProgress)
         var emailTextView: AppCompatEditText = view.findViewById(R.id.email)
         var passwordTextView: AppCompatEditText = view.findViewById(R.id.pass)
@@ -53,13 +56,11 @@ class Login : Fragment() {
                     }else{
                         loginProgress.alpha = 0F
                         Toast.makeText(activity, it.exception?.message.toString(), Toast.LENGTH_SHORT).show()
-                        Log.d("TAG", it.exception?.message.toString())
                     }
                 }
             }else{
                 loginProgress.alpha = 0F
                 Toast.makeText(activity, "Invalid Credentials!", Toast.LENGTH_SHORT).show()
-
             }
         }
 
@@ -68,9 +69,7 @@ class Login : Fragment() {
             val transaction = fragmentManager!!.beginTransaction()
             transaction.replace(R.id.framecontainer, forgetPasswordFragment, "ForgetFragment").commit()
             transaction.addToBackStack(null)
-
         }
-
 
         signuptxt.setOnClickListener {
             moveToSigin()
@@ -86,5 +85,4 @@ class Login : Fragment() {
         transaction?.replace(R.id.framecontainer, signupFragment)
         transaction?.commit()
     }
-
 }

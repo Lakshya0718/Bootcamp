@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".AccountFragment"
-    android:background="@color/white">
+    android:background="@drawable/gradient">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/profileToolbar"
@@ -15,14 +15,6 @@
         app:titleTextColor="@color/primary"
         android:background="@color/white"
         app:titleTextAppearance="@style/TextAppearance.AppCompat.Title"/>
-<!--        <androidx.appcompat.widget.AppCompatButton-->
-<!--            android:id="@+id/dataBtn"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textSize="24dp"-->
-<!--            android:text="getuser"-->
-<!--            android:layout_below="@id/userEmail"-->
-<!--        />-->
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileImageView"
@@ -39,13 +31,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:fontFamily="@font/almendra_bold"
-            android:hint="User Name"
+            android:hint="@string/user_name"
+            android:background="#fff"
+            android:padding="5dp"
             android:layout_centerHorizontal="true"
             android:textColorHint="@color/hintAccentLight"
-            android:textColor="@color/accentLight"
-            android:layout_below="@id/changeprofilepic"/>
+            android:textColor="@color/black"
+            android:layout_below="@id/profileImageView"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/userEmail"
@@ -53,34 +47,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="11dp"
             android:textSize="20sp"
+            android:background="#fff"
+            android:padding="5dp"
             android:fontFamily="@font/almendra_bold"
-            android:hint="Email Address"
+            android:hint="@string/email"
             android:layout_centerHorizontal="true"
             android:textColorHint="@color/hintAccentLight"
-            android:textColor="@color/accentLight"
+            android:textColor="@color/black"
             android:layout_below="@id/userName" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/changeprofilepic"
-        android:text="@string/update_profile_pic"
-        android:fontFamily="@font/almendra_bold"
-        android:background="#fff"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="70dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/profileImageView"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="3dp"
-         />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/logoutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
-        android:text="Logout"
+        android:textSize="18sp"
+        android:text="@string/logout"
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:fontFamily="@font/almendra_bold"

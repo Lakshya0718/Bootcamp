@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.examples.gallerio.ViewModel.FirebaseViewModel
+import com.examples.gallerio.viewModel.FirebaseViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CategoryFragment : Fragment() {

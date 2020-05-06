@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.examples.gallerio.ViewModel.FirebaseViewModel
+import com.examples.gallerio.viewModel.FirebaseViewModel
 import com.examples.gallerio.model.ImageModel
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
@@ -22,16 +22,12 @@ class CategoryDetailAdapter(private val mContext: Context, categoryDetailFragmen
     private lateinit var mViewModel: FirebaseViewModel
 
     private lateinit var mCategoryImageDataSet: List<ImageModel>
-    private var categoryDetailFragment: CategoryDetailFragment
+    private var categoryDetailFragment: CategoryDetailFragment = categoryDetailFragment
 
     fun setImageData(images: List<ImageModel>) {
         mCategoryImageDataSet = images
         notifyDataSetChanged()
 
-    }
-
-    init{
-        this.categoryDetailFragment = categoryDetailFragment
     }
 
     var mAuth: FirebaseAuth = FirebaseAuth.getInstance()

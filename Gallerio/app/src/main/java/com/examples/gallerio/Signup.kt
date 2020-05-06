@@ -13,10 +13,9 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.examples.gallerio.ViewModel.FirebaseViewModel
-
+import com.examples.gallerio.viewModel.FirebaseViewModel
+import kotlinx.android.synthetic.main.fragment_signup.*
 
 
 class Signup : Fragment() {
@@ -30,32 +29,31 @@ class Signup : Fragment() {
 
         val view: View = inflater.inflate(R.layout.fragment_signup, container, false)
 
-       // mViewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
 
-        val loginProgress: ProgressBar = view.findViewById(R.id.loginProgress)
+        val loginProgress: ProgressBar = view.findViewById(R.id.loginProgress1)
 
-        var nameTextView: AppCompatEditText = view.findViewById(R.id.name)
-        var emailTextView: AppCompatEditText = view.findViewById(R.id.email)
-        var passwordTextView: AppCompatEditText = view.findViewById(R.id.password)
-
-        var signinBtn: AppCompatButton = view.findViewById(R.id.registerbtn)
-        var loginBtn: AppCompatTextView = view.findViewById(R.id.signintxt)
+        val nameTextView: AppCompatEditText = view.findViewById(R.id.name)
+        val emailTextView: AppCompatEditText = view.findViewById(R.id.email)
+        val passwordTextView: AppCompatEditText = view.findViewById(R.id.pass)
+        val signinBtn: AppCompatButton = view.findViewById(R.id.registerbtn)
+        val loginBtn: AppCompatTextView = view.findViewById(R.id.signintxt)
 
         loginProgress.alpha = 0F
 
         signinBtn.setOnClickListener {
             loginProgress.alpha = 1F
-            var name: String = nameTextView.text.toString()
-            var email: String = emailTextView.text.toString()
-            var password: String = passwordTextView.text.toString()
+            val name: String = nameTextView.text.toString()
+            val email: String = emailTextView.text.toString()
+            val password: String = passwordTextView.text.toString()
 
             if (email.isNotEmpty() && password.isNotEmpty() && name.isNotEmpty()){
                 mViewModel.signin(email, password, name)
-                loginProgress.alpha = 0F
+                loginProgress1.alpha = 0F
                 startActivity(Intent(activity, MainActivity::class.java))
-                Toast.makeText(activity, "Signin Successfull!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Sign In Successful!", Toast.LENGTH_SHORT).show()
             }else{
-                loginProgress.alpha = 0F
+                loginProgress1.alpha = 0F
                 Toast.makeText(activity, "Invalid Credentials!", Toast.LENGTH_SHORT).show()
 
             }

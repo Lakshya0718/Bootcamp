@@ -93,7 +93,7 @@ android:textStyle="bold" />
     android:layout_marginEnd="30dp"
     android:layout_marginTop="20dp"
     android:padding="5dp"
-        android:autofillHints=""
+        android:autofillHints="@string/password"
     android:hint="@string/password"
     android:id="@+id/pass"
     android:textColor="#fff"
@@ -135,4 +135,13 @@ android:textStyle="bold" />
     android:fontFamily="@font/almendra_bold"
     android:textColor="#fff"/>
 
-    </RelativeLayout>
+    <ProgressBar
+        android:id="@+id/loginProgress1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signintxt"
+
+        />
+
+
+</RelativeLayout>
