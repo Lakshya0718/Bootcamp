@@ -1,4 +1,4 @@
-package com.examples.gallerio
+package com.examples.gallerio.adapter
 
 import android.content.Context
 import android.os.Bundle
@@ -11,18 +11,22 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.examples.gallerio.viewModel.FirebaseViewModel
+import com.examples.gallerio.fragments.FragmentCategoryDetail
+import com.examples.gallerio.fragments.FragmentFullImageView
+import com.examples.gallerio.R
+import com.examples.gallerio.viewModel.FirebaseCategoryViewModel
 import com.examples.gallerio.model.ImageModel
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 
 
-class CategoryDetailAdapter(private val mContext: Context, categoryDetailFragment: CategoryDetailFragment): RecyclerView.Adapter<CategoryDetailAdapter.ViewHolder>() {
+class AdapterCategoryDetail(private val mContext: Context,
+                            private var fragmentCategoryDetail: FragmentCategoryDetail
+): RecyclerView.Adapter<AdapterCategoryDetail.ViewHolder>() {
 
-    private lateinit var mViewModel: FirebaseViewModel
+    private lateinit var mCategoryViewModel: FirebaseCategoryViewModel
 
     private lateinit var mCategoryImageDataSet: List<ImageModel>
-    private var categoryDetailFragment: CategoryDetailFragment = categoryDetailFragment
 
     fun setImageData(images: List<ImageModel>) {
         mCategoryImageDataSet = images
@@ -39,7 +43,13 @@ class CategoryDetailAdapter(private val mContext: Context, categoryDetailFragmen
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
 
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.image_item_view, parent, false))
+        return ViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.image_item_view,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int {
@@ -59,10 +69,10 @@ class CategoryDetailAdapter(private val mContext: Context, categoryDetailFragmen
             popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
 
                 when(item.itemId){
-                R.id.deleteBtn-> {
-                    var mDocumentId = mCategoryImageDataSet[position].documentId.toString()
-                    mViewModel = ViewModelProvider(categoryDetailFragment).get(FirebaseViewModel::class.java)
-                    mViewModel.deleteImage(mDocumentId)
+                R.id.deleteBtn -> {
+                    val mDocumentId = mCategoryImageDataSet[position].documentId.toString()
+                    mCategoryViewModel = ViewModelProvider(fragmentCategoryDetail).get(FirebaseCategoryViewModel::class.java)
+                    mCategoryViewModel.deleteImage(mDocumentId)
                     Toast.makeText(it.context, "Image Deleted!", Toast.LENGTH_SHORT).show()
                 }
                     else -> Toast.makeText(it.context, "Something Went Wrong.", Toast.LENGTH_SHORT).show()
@@ -80,9 +90,10 @@ class CategoryDetailAdapter(private val mContext: Context, categoryDetailFragmen
 
         val activity: AppCompatActivity = it.context as AppCompatActivity
         val fragmentTransaction: FragmentTransaction = activity.supportFragmentManager.beginTransaction()
-        val fullImage: FullImageViewFragment = FullImageViewFragment(activity)
-        fullImage.arguments = image
-        fragmentTransaction.replace(R.id.mainContainer, fullImage)
+        val fullImageFullImageView: FragmentFullImageView =
+            FragmentFullImageView(activity)
+        fullImageFullImageView.arguments = image
+        fragmentTransaction.replace(R.id.mainContainer, fullImageFullImageView)
         fragmentTransaction.addToBackStack("FullImageViewFragment")
         fragmentTransaction.commit()
 

@@ -1,4 +1,4 @@
-package com.examples.gallerio
+package com.examples.gallerio.adapter
 
 import android.content.Context
 import android.os.Bundle
@@ -11,13 +11,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
+import com.examples.gallerio.fragments.FragmentCategory
+import com.examples.gallerio.fragments.FragmentCategoryDetail
+import com.examples.gallerio.R
 import com.examples.gallerio.model.CategoryModel
 import com.squareup.picasso.Picasso
 
-class CategoryAdapter(private val mContext: Context, categoryFragment: CategoryFragment): RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+class AdapterCategory(private val mContext: Context, fragmentCategory: FragmentCategory): RecyclerView.Adapter<AdapterCategory.ViewHolder>() {
 
     private lateinit var mCategoryDataSet: List<CategoryModel>
-    private var categoryFragment: CategoryFragment = categoryFragment
+    private var fragmentCategory: FragmentCategory = fragmentCategory
 
     fun setCategories(category:List<CategoryModel>){
         mCategoryDataSet = category
@@ -26,7 +29,13 @@ class CategoryAdapter(private val mContext: Context, categoryFragment: CategoryF
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        return ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.category_item_view, parent, false))
+        return ViewHolder(
+            LayoutInflater.from(mContext).inflate(
+                R.layout.category_item_view,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int {
@@ -51,10 +60,11 @@ class CategoryAdapter(private val mContext: Context, categoryFragment: CategoryF
 
         val activity: AppCompatActivity = it.context as AppCompatActivity
         val fragmentTransaction: FragmentTransaction = activity.supportFragmentManager.beginTransaction()
-        val categoryDetailFragment: CategoryDetailFragment = CategoryDetailFragment()
-        categoryDetailFragment.arguments = categoryId
+        val fragmentCategoryDetail: FragmentCategoryDetail =
+            FragmentCategoryDetail()
+        fragmentCategoryDetail.arguments = categoryId
 
-        fragmentTransaction.replace(R.id.mainContainer, categoryDetailFragment)
+        fragmentTransaction.replace(R.id.mainContainer, fragmentCategoryDetail)
         fragmentTransaction.addToBackStack("CategoryFragment")
         fragmentTransaction.commit()
 

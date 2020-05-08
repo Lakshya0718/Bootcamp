@@ -1,4 +1,4 @@
-package com.examples.gallerio
+package com.examples.gallerio.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,14 +9,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.examples.gallerio.viewModel.FirebaseViewModel
+import com.examples.gallerio.R
+import com.examples.gallerio.adapter.AdapterCategory
+import com.examples.gallerio.viewModel.FirebaseCategoryViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class CategoryFragment : Fragment() {
+class FragmentCategory : Fragment() {
 
-    private lateinit var mViewModel: FirebaseViewModel
+    private lateinit var mCategoryViewModel: FirebaseCategoryViewModel
 
-    lateinit var mAdapter: CategoryAdapter
+    lateinit var mAdapterCategory: AdapterCategory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,13 +28,14 @@ class CategoryFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_category, container, false)
         val recylerView: RecyclerView = view.findViewById(R.id.mainCategoryList)
 
-        mViewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
-        mAdapter = CategoryAdapter(this.context!!, this)
+        mCategoryViewModel = ViewModelProvider(this).get(FirebaseCategoryViewModel::class.java)
+        mAdapterCategory =
+            AdapterCategory(this.context!!, this)
 
-        mViewModel.loadCategory().observe(viewLifecycleOwner, Observer { categories ->
+        mCategoryViewModel.loadCategory().observe(viewLifecycleOwner, Observer { categories ->
             categories?.let {
-                mAdapter.setCategories(it)
-                recylerView.adapter = mAdapter
+                mAdapterCategory.setCategories(it)
+                recylerView.adapter = mAdapterCategory
                 recylerView.layoutManager = GridLayoutManager(context, 2)
             }
         })
@@ -42,8 +45,9 @@ class CategoryFragment : Fragment() {
 
         addCat.setOnClickListener {
 
-                val categoryDialog: CategoryDialogeFragment = CategoryDialogeFragment()
-                fragmentManager?.let { it1 -> categoryDialog.show(it1, "CategoryDialoge") }
+                val categoryDialogCategoryDialog: FragmentCategoryDialog =
+                    FragmentCategoryDialog()
+                fragmentManager?.let { it1 -> categoryDialogCategoryDialog.show(it1, "CategoryDialoge") }
 
             }
 

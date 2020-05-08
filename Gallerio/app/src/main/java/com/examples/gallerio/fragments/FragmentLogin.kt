@@ -1,4 +1,4 @@
-package com.examples.gallerio
+package com.examples.gallerio.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,15 +14,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
-import com.examples.gallerio.viewModel.FirebaseViewModel
+import com.examples.gallerio.R
+import com.examples.gallerio.activities.MainActivity
+import com.examples.gallerio.viewModel.FirebaseAuthViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 
-class Login : Fragment() {
+class FragmentLogin : Fragment() {
 
-    private lateinit var mViewModel: FirebaseViewModel
+    private lateinit var mViewModel: FirebaseAuthViewModel
     lateinit var mAuth: FirebaseAuth
-    private val forgetPasswordFragment = ForgetPasswordFragment()
+    private val forgetPasswordFragment =
+        FragmentForgetPassword()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +35,7 @@ class Login : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         val view: View = inflater.inflate(R.layout.fragment_login, container, false)
 
-        mViewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(FirebaseAuthViewModel::class.java)
 
         val loginProgress: ProgressBar = view.findViewById(R.id.loginProgress)
         var emailTextView: AppCompatEditText = view.findViewById(R.id.email)
@@ -81,7 +84,7 @@ class Login : Fragment() {
     private fun moveToSigin() {
         val fragmentManager: FragmentManager? = fragmentManager
         val transaction: FragmentTransaction? = fragmentManager?.beginTransaction()
-        val signupFragment = Signup()
+        val signupFragment = FragmentSignup()
         transaction?.replace(R.id.framecontainer, signupFragment)
         transaction?.commit()
     }

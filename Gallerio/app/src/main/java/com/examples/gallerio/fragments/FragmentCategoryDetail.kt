@@ -1,4 +1,4 @@
-package com.examples.gallerio
+package com.examples.gallerio.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,15 +10,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.examples.gallerio.viewModel.FirebaseViewModel
+import com.examples.gallerio.R
+import com.examples.gallerio.adapter.AdapterCategoryDetail
+import com.examples.gallerio.viewModel.FirebaseCategoryViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 
-class CategoryDetailFragment : Fragment() {
+class FragmentCategoryDetail : Fragment() {
 
-    private lateinit var mViewModel: FirebaseViewModel
+    private lateinit var mCategoryViewModel: FirebaseCategoryViewModel
 
     var db: FirebaseFirestore = FirebaseFirestore.getInstance()
     var mAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -27,7 +29,7 @@ class CategoryDetailFragment : Fragment() {
         .setPersistenceEnabled(true).build()
 
 
-    lateinit var mAdapter: CategoryDetailAdapter
+    lateinit var mAdapterCategoryDetail: AdapterCategoryDetail
 
 
     override fun onCreateView(
@@ -35,7 +37,7 @@ class CategoryDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        mViewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
+        mCategoryViewModel = ViewModelProvider(this).get(FirebaseCategoryViewModel::class.java)
 
         db.firestoreSettings = settings
 
@@ -50,11 +52,15 @@ class CategoryDetailFragment : Fragment() {
 
         val recyclerView: RecyclerView = view.findViewById(R.id.categoryDetailList)
 
-        mAdapter = CategoryDetailAdapter(this.context!!, this)
-        mViewModel.loadCategoryDetail(categoryName).observe(viewLifecycleOwner, Observer { categoryImages ->
+        mAdapterCategoryDetail =
+            AdapterCategoryDetail(
+                this.context!!,
+                this
+            )
+        mCategoryViewModel.loadCategoryDetail(categoryName).observe(viewLifecycleOwner, Observer { categoryImages ->
             categoryImages?.let {
-                mAdapter.setImageData(it)
-                recyclerView.adapter = mAdapter
+                mAdapterCategoryDetail.setImageData(it)
+                recyclerView.adapter = mAdapterCategoryDetail
                 recyclerView.layoutManager = GridLayoutManager(context, 2)
 //                recyclerView.layoutManager = StaggeredGridLayoutManager(2, 1)
             }
@@ -72,7 +78,8 @@ class CategoryDetailFragment : Fragment() {
     private fun addImage(categoryName: String) {
         var categoryId: Bundle = Bundle()
         categoryId.putString("categoryName", categoryName)
-        val addImageDialogeFragment: AddImageDialogeFragment = AddImageDialogeFragment()
+        val addImageDialogeFragment: FragmentAddimageDialog =
+            FragmentAddimageDialog()
         addImageDialogeFragment.arguments = categoryId
         fragmentManager?.let { it-> addImageDialogeFragment.show(it, "AddImageDialog") }
     }

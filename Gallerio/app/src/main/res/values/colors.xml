@@ -3,9 +3,9 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="placeholderBackground">#D1D1D1</color>
 
     <color name="primary">#F2385F</color>
-    <color name="primarDark">#E2284C</color>
     <color name="accent">#233A48</color>
     <color name="accentLight">#2D5051</color>
     <color name="hintAccent">#707070</color>

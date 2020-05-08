@@ -1,4 +1,4 @@
-package com.examples.gallerio
+package com.examples.gallerio.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.widget.AppCompatImageView
+import com.examples.gallerio.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
@@ -16,7 +17,7 @@ import com.squareup.picasso.Picasso
 /**
  * A simple [Fragment] subclass.
  */
-class FullImageViewFragment(context: Context?) : Fragment() {
+class FragmentFullImageView(context: Context?) : Fragment() {
 
     var db: FirebaseFirestore = FirebaseFirestore.getInstance()
     var mAuth: FirebaseAuth = FirebaseAuth.getInstance()

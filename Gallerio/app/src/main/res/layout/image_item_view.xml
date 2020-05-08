@@ -6,7 +6,6 @@
     android:clickable="true"
     android:padding="5dp"
     android:foreground="?android:attr/selectableItemBackground"
-    android:id="@+id/imageViewLayout"
     tools:targetApi="m"
     android:focusable="true"
     tools:ignore="UnusedAttribute">

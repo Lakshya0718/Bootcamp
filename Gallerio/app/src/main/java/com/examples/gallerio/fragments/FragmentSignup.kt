@@ -1,4 +1,4 @@
-package com.examples.gallerio
+package com.examples.gallerio.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,13 +14,15 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
-import com.examples.gallerio.viewModel.FirebaseViewModel
+import com.examples.gallerio.R
+import com.examples.gallerio.activities.MainActivity
+import com.examples.gallerio.viewModel.FirebaseAuthViewModel
 import kotlinx.android.synthetic.main.fragment_signup.*
 
 
-class Signup : Fragment() {
+class FragmentSignup : Fragment() {
 
-    private lateinit var mViewModel: FirebaseViewModel
+    private lateinit var mViewModel: FirebaseAuthViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +31,7 @@ class Signup : Fragment() {
 
         val view: View = inflater.inflate(R.layout.fragment_signup, container, false)
 
-        mViewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(FirebaseAuthViewModel::class.java)
 
         val loginProgress: ProgressBar = view.findViewById(R.id.loginProgress1)
 
@@ -47,11 +49,21 @@ class Signup : Fragment() {
             val email: String = emailTextView.text.toString()
             val password: String = passwordTextView.text.toString()
 
+
             if (email.isNotEmpty() && password.isNotEmpty() && name.isNotEmpty()){
-                mViewModel.signin(email, password, name)
-                loginProgress1.alpha = 0F
-                startActivity(Intent(activity, MainActivity::class.java))
-                Toast.makeText(activity, "Sign In Successful!", Toast.LENGTH_SHORT).show()
+
+                if (password.length<8){
+                    Toast.makeText(activity, "Password too short, Minimum 8 characters required", Toast.LENGTH_SHORT).show()
+                    loginProgress1.alpha = 0F
+                }
+
+                else {
+                    mViewModel.signin(email, password, name)
+                    loginProgress1.alpha = 0F
+                    startActivity(Intent(activity, MainActivity::class.java))
+                    Toast.makeText(activity, "Sign In Successful!", Toast.LENGTH_SHORT).show()
+                }
+
             }else{
                 loginProgress1.alpha = 0F
                 Toast.makeText(activity, "Invalid Credentials!", Toast.LENGTH_SHORT).show()
@@ -69,7 +81,7 @@ class Signup : Fragment() {
     private fun moveToLogin() {
         val fragmentManager: FragmentManager? = fragmentManager
         val transaction: FragmentTransaction? = fragmentManager?.beginTransaction()
-        val loginFragment = Login()
+        val loginFragment = FragmentLogin()
         transaction?.replace(R.id.framecontainer, loginFragment)
         transaction?.commit()
     }

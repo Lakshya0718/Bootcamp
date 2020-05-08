@@ -1,4 +1,4 @@
-package com.examples.gallerio
+package com.examples.gallerio.fragments
 
 import android.content.Intent
 import android.net.Uri
@@ -13,16 +13,18 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.examples.gallerio.viewModel.FirebaseViewModel
+import com.examples.gallerio.R
+import com.examples.gallerio.activities.MainActivity
+import com.examples.gallerio.viewModel.FirebaseCategoryViewModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.FirebaseStorage
 
-class CategoryDialogeFragment : DialogFragment() {
+class FragmentCategoryDialog : DialogFragment() {
 
-    private lateinit var mViewModel: FirebaseViewModel
+    private lateinit var mCategoryViewModel: FirebaseCategoryViewModel
 
     private var mAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private var storageReference = FirebaseStorage.getInstance().reference
@@ -50,7 +52,7 @@ class CategoryDialogeFragment : DialogFragment() {
             Log.d("categoryId", categoryId)
         }
 
-        mViewModel = ViewModelProvider(this).get(FirebaseViewModel::class.java)
+        mCategoryViewModel = ViewModelProvider(this).get(FirebaseCategoryViewModel::class.java)
 
         var rootView: View = inflater.inflate(R.layout.fragment_category_dialoge, container, true)
 
@@ -65,6 +67,7 @@ class CategoryDialogeFragment : DialogFragment() {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             startActivityForResult(intent, 1)
+
         }
 
         cancelBtn.setOnClickListener {
@@ -76,14 +79,15 @@ class CategoryDialogeFragment : DialogFragment() {
             var categoryName:String = catName.text.toString()
             if (categoryName.isEmpty()) {
                 catName.error = "Please Enter Category Name"
-            } else if (catImageUri == null){
+            }
+            else if (catImageUri == null){
                 Toast.makeText(MainActivity(), "Please select a category image", Toast.LENGTH_SHORT).show()
-            }else{
+            }
+            else{
                 dialog?.dismiss()
-                mViewModel.addCategory(catImageUri!!, categoryName, getCategoryId(categoryName))
-                Toast.makeText(MainActivity(), "Category Added!", Toast.LENGTH_SHORT).show()
+                mCategoryViewModel.addCategory(catImageUri!!, categoryName, getCategoryId(categoryName))
+               // Toast.makeText(MainActivity(), "Category Added!", Toast.LENGTH_SHORT).show()
                 imagePath = catImage?.path.toString()
-
             }
         }
 

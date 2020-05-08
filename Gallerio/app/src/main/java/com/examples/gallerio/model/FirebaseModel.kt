@@ -3,7 +3,7 @@ package com.examples.gallerio.model
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
-import com.examples.gallerio.MainActivity
+import com.examples.gallerio.activities.MainActivity
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -30,7 +30,7 @@ class FirebaseModel {
     lateinit var categoryListener: ListenerRegistration
     var db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-    var userReference = db.collection("Users").document(currentUser)
+    var userReference = db.collection("UsersMainActivity").document(currentUser)
     var categoryReference = db.collection("Users").document("Categories").collection(currentUser)
     var categoryDetailReference = db.collection("Users").document("Timeline").collection(currentUser)
 //    val imageReference = db.collection("Users").document("Timeline").collection(currentUser)
@@ -66,15 +66,15 @@ class FirebaseModel {
     fun addCategory(catImageUri: Uri, categoryName: String, categoryId: String){
         val storageReference = FirebaseStorage.getInstance().reference
             .child(currentUser).child("$categoryName.jpg")
-        var uploadTask = catImageUri?.let { it -> storageReference.putFile(it) }
-        val urlTask = uploadTask?.continueWithTask { task ->
+        val uploadTask = catImageUri.let { it -> storageReference.putFile(it) }
+        val urlTask = uploadTask.continueWithTask { task ->
             if (!task.isSuccessful){
                 task.exception?.let {
                     throw it
                 }
             }
             storageReference.downloadUrl
-        }?.addOnCompleteListener { task ->
+        }.addOnCompleteListener { task ->
             if (task.isSuccessful){
                 categoryImage = task.result
                 addCategoryToFirestore(categoryId, categoryName, categoryImage.toString())
@@ -88,8 +88,8 @@ class FirebaseModel {
     fun addNewImage(categoryName: String, imageUri: Uri, imageName: String){
         val storageReference = FirebaseStorage.getInstance().reference
             .child("timeline").child(currentUser).child(imageName)
-        var uploadTask = imageUri?.let { it -> storageReference.putFile(it) }
-        val urlTask =  uploadTask?.continueWithTask { task ->
+        val uploadTask = imageUri.let { it -> storageReference.putFile(it) }
+        val urlTask =  uploadTask.continueWithTask { task ->
             if (!task.isSuccessful){
                 task.exception?.let {
                     throw it
@@ -134,8 +134,7 @@ class FirebaseModel {
     }
 
     fun loadUserData(): Task<DocumentSnapshot>{
-        val documentSnapshot = userReference.get()
-        return documentSnapshot
+        return userReference.get()
     }
 
     fun addProfileImage(profileImage: Uri){

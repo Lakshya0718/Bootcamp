@@ -1,4 +1,4 @@
-package com.examples.gallerio
+package com.examples.gallerio.fragments
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_forget_password.*
 import kotlinx.android.synthetic.main.fragment_forget_password.view.*
 
-class ForgetPasswordFragment : Fragment() {
+class FragmentForgetPassword : Fragment() {
     private var mAuth: FirebaseAuth? = null
     private var email: String? = null
 

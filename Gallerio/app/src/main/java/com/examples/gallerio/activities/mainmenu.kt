@@ -1,24 +1,29 @@
-package com.examples.gallerio
+package com.examples.gallerio.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.examples.gallerio.fragments.FragmentAccount
+import com.examples.gallerio.fragments.FragmentCategory
+import com.examples.gallerio.R
+import com.examples.gallerio.fragments.FragmentTimeline
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_mainmenu.*
-import kotlinx.android.synthetic.main.fragment_account.*
 
 class mainmenu : AppCompatActivity(),BottomNavigationView.OnNavigationItemSelectedListener {
 
     lateinit var mAuth: FirebaseAuth
     private val manager: FragmentManager = supportFragmentManager
     private val transaction = manager.beginTransaction()
-    private val categoryFragment = CategoryFragment()
-    private val timeLineFragment = TimelineFragment()
-    private val accountFragment = AccountFragment()
+    private val categoryFragment =
+        FragmentCategory()
+    private val timeLineFragment =
+        FragmentTimeline()
+    private val accountFragment =
+        FragmentAccount()
 
 
 
@@ -50,7 +55,7 @@ class mainmenu : AppCompatActivity(),BottomNavigationView.OnNavigationItemSelect
             supportActionBar!!.setTitle("Your Timeline")
             transaction1.replace(R.id.mainContainer,timeLineFragment)
         }
-        else if(item.itemId ==  R.id.profile){
+        else if(item.itemId == R.id.profile){
             supportActionBar!!.setTitle("Profile")
             transaction1.replace(R.id.mainContainer, accountFragment)
         }

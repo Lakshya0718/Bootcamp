@@ -1,4 +1,4 @@
-package com.examples.gallerio
+package com.examples.gallerio.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.examples.gallerio.R
+import com.examples.gallerio.adapter.AdapterTimeline
 import com.examples.gallerio.model.TimelineModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
@@ -15,7 +17,7 @@ import com.google.firebase.firestore.*
 /**
  * A simple [Fragment] subclass.
  */
-class TimelineFragment : Fragment() {
+class FragmentTimeline : Fragment() {
 
     private val settings = FirebaseFirestoreSettings.Builder()
         .setPersistenceEnabled(true)
@@ -29,7 +31,7 @@ class TimelineFragment : Fragment() {
     var dbRef =  db.collection("Users").document("Timeline").collection(currentUser)
 
     val mTimelineDataset = ArrayList<TimelineModel>()
-    private lateinit var timelineAdapter: TimelineAdapter
+    private lateinit var adapterTimeline: AdapterTimeline
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,11 +47,12 @@ class TimelineFragment : Fragment() {
         val mLayoutManager = LinearLayoutManager(context)
         mRecyclerView?.layoutManager = mLayoutManager
 
-        timelineAdapter = TimelineAdapter(mTimelineDataset)
+        adapterTimeline =
+            AdapterTimeline(mTimelineDataset)
 
         loadData()
 
-        mRecyclerView?.adapter = timelineAdapter
+        mRecyclerView?.adapter = adapterTimeline
 
         if (mTimelineDataset.isNotEmpty()){
             timelineListener.remove()
@@ -69,11 +72,11 @@ class TimelineFragment : Fragment() {
 
                 when (dc.type) {
                     DocumentChange.Type.ADDED -> {
-                        timelineAdapter.setCategoryData(timelineModel)
+                        adapterTimeline.setCategoryData(timelineModel)
                         Log.d("AccountFragment", "Added image: ${timelineModel.imageUrl}") }
                     //                DocumentChange.Type.MODIFIED -> {mAdapter.setCategoryData(categoryModel)
                     //                    Log.d("AccountFragment", "Modified image: ${categoryModel.catImage}")}
-                    DocumentChange.Type.REMOVED -> {timelineAdapter.removeData(timelineModel)
+                    DocumentChange.Type.REMOVED -> {adapterTimeline.removeData(timelineModel)
                         Log.d("AccountFragment", "Removed image: $timelineModel")}
                 }
             }

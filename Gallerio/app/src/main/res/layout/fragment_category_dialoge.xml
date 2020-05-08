@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:padding="5dp"
     android:background="@color/white"
-    tools:context=".CategoryDialogeFragment">
+    tools:context=".fragments.FragmentCategoryDialog">
 
         <TextView
             android:id="@+id/dialogtitle"
@@ -51,7 +51,6 @@
             android:textColor="@color/primary"/>
 
     <LinearLayout
-        android:id="@+id/btnContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

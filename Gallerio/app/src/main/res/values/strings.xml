@@ -2,7 +2,6 @@
     <string name="app_name">Gallerio</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login">LogIn</string>
     <string name="text11">Welcome Back, kindly fill email id and password</string>
     <string name="email">Email</string>
@@ -17,9 +16,6 @@
     <string name="name">Name</string>
     <string name="register_me">Register Me!</string>
     <string name="gotologinpagetxt">Already have Account! Click Here!</string>
-    <string name="confirm_passowrd">Confirm Passowrd</string>
-    <string name="phno">Mobile No.</string>
-    <string name="update_profile_pic">Update Profile pic</string>
     <string name="forget_password">forget password</string>
     <string name="send_mail_to_reset_password">Send mail to reset password</string>
     <string name="add_image">Add Image</string>

@@ -1,18 +1,25 @@
-package com.examples.gallerio
+package com.examples.gallerio.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.examples.gallerio.R
 import com.examples.gallerio.model.TimelineModel
 import com.squareup.picasso.Picasso
 
-class TimelineAdapter(var imageUrl: ArrayList<TimelineModel>) : RecyclerView.Adapter<TimelineAdapter.ViewHolder>() {
+class AdapterTimeline(var imageUrl: ArrayList<TimelineModel>) : RecyclerView.Adapter<AdapterTimeline.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.timeline_item_view, parent, false))
+        return ViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.timeline_item_view,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int {
