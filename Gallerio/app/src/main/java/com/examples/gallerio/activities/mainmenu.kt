@@ -33,7 +33,7 @@ class mainmenu : AppCompatActivity(),BottomNavigationView.OnNavigationItemSelect
         mAuth = FirebaseAuth.getInstance()
 
         setSupportActionBar(toolbar)
-        supportActionBar!!.setTitle("Categories")
+        supportActionBar!!.title = "Categories"
 
 
     MNV.setOnNavigationItemSelectedListener(this)
@@ -47,16 +47,16 @@ class mainmenu : AppCompatActivity(),BottomNavigationView.OnNavigationItemSelect
         var transaction1 : FragmentTransaction = manager1.beginTransaction()
 
         if(item.itemId == R.id.home1){
-            supportActionBar!!.setTitle("Categories")
+            supportActionBar!!.title = "Categories"
             transaction1.replace(R.id.mainContainer,categoryFragment)
         }
 
         else if(item.itemId == R.id.timeline){
-            supportActionBar!!.setTitle("Your Timeline")
+            supportActionBar!!.title = "Your Timeline"
             transaction1.replace(R.id.mainContainer,timeLineFragment)
         }
         else if(item.itemId == R.id.profile){
-            supportActionBar!!.setTitle("Profile")
+            supportActionBar!!.title = "Profile"
             transaction1.replace(R.id.mainContainer, accountFragment)
         }
 

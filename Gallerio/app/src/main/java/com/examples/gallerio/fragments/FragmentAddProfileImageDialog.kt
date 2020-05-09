@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.examples.gallerio.fragments
 
 import android.app.Activity

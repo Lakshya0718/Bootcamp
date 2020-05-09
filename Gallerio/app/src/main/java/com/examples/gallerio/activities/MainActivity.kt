@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         handler = Handler()
         handler!!.postDelayed(Runnable {
-            val currentUser: FirebaseUser? = mAuth!!.getCurrentUser()
+            val currentUser: FirebaseUser? = mAuth!!.currentUser
             if (currentUser != null) {
                 val intent = Intent(this, mainmenu::class.java)
                 startActivity(intent)

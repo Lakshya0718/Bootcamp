@@ -32,7 +32,9 @@ class FragmentForgetPassword : Fragment() {
             if (TextUtils.isEmpty(email)) {
                 Toast.makeText(context, "Enter your registered email id", Toast.LENGTH_SHORT).show()
             }
-            output.progressbar.setVisibility(View.VISIBLE)
+
+            if (!TextUtils.isEmpty(email)){
+                output.progressbar.visibility = View.VISIBLE
             mAuth!!.sendPasswordResetEmail(email!!).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(
@@ -45,9 +47,9 @@ class FragmentForgetPassword : Fragment() {
                     Toast.makeText(
                         context, "Failed to send reset email!", Toast.LENGTH_SHORT).show()
                 }
-                output.progressbar.setVisibility(View.GONE)
+                output.progressbar.visibility = View.GONE
 
-            }
+            }}
 
         })
         return output

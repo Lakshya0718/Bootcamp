@@ -15,6 +15,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.examples.gallerio.R
 import com.examples.gallerio.activities.MainActivity
+import com.examples.gallerio.activities.mainmenu
 import com.examples.gallerio.viewModel.FirebaseCategoryViewModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -76,17 +77,18 @@ class FragmentCategoryDialog : DialogFragment() {
 
         addBtn.setOnClickListener {
 
-            var categoryName:String = catName.text.toString()
+            val categoryName:String = catName.text.toString()
             if (categoryName.isEmpty()) {
                 catName.error = "Please Enter Category Name"
             }
             else if (catImageUri == null){
-                Toast.makeText(MainActivity(), "Please select a category image", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Please select a category image", Toast.LENGTH_SHORT).show()
             }
+
             else{
                 dialog?.dismiss()
                 mCategoryViewModel.addCategory(catImageUri!!, categoryName, getCategoryId(categoryName))
-               // Toast.makeText(MainActivity(), "Category Added!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Category Added!", Toast.LENGTH_SHORT).show()
                 imagePath = catImage?.path.toString()
             }
         }

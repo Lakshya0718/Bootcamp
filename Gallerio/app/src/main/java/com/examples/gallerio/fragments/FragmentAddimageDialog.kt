@@ -15,7 +15,6 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.examples.gallerio.R
-import com.examples.gallerio.activities.MainActivity
 import com.examples.gallerio.viewModel.FirebaseImageViewModel
 import java.io.ByteArrayOutputStream
 
@@ -48,7 +47,7 @@ class FragmentAddimageDialog : DialogFragment() {
         }
 
         takePhotoBtn.setOnClickListener {
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            val intent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(intent, 1)
             takePhotoBtn.isEnabled = false
             selectPhotoBtn.isEnabled = false
@@ -66,7 +65,7 @@ class FragmentAddimageDialog : DialogFragment() {
             val imageName = "${getRandomString(10)}+.jpg"
             imageUri?.let { it1 ->
                 mViewModel.addNewImage(categoryName, it1, imageName)
-                //Toast.makeText(MainActivity(), "Image Added", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Image Added", Toast.LENGTH_SHORT).show()
                 dialog?.dismiss()
                 }
             }
@@ -80,7 +79,6 @@ class FragmentAddimageDialog : DialogFragment() {
                 when (requestCode) {
                     1 -> {
                         //code Working
-//                        var photo: Bitmap = data?.extras?.get("data") as Bitmap
                         val photo: Bitmap = data?.extras?.get("data") as Bitmap
                         imageUri = getImageUri(context, photo)
 

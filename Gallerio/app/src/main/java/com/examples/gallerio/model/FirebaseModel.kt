@@ -20,7 +20,7 @@ class FirebaseModel {
 
     //FirebaseAuth
     var mAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    var currentUser: String = mAuth.currentUser?.uid.toString()
+    private var currentUser: String = mAuth.currentUser?.uid.toString()
 
     //FirebaseFireStore Setting
     private val settings = FirebaseFirestoreSettings.Builder()
@@ -89,14 +89,14 @@ class FirebaseModel {
         val storageReference = FirebaseStorage.getInstance().reference
             .child("timeline").child(currentUser).child(imageName)
         val uploadTask = imageUri.let { it -> storageReference.putFile(it) }
-        val urlTask =  uploadTask.continueWithTask { task ->
+        val urlTask = uploadTask.continueWithTask { task ->
             if (!task.isSuccessful){
                 task.exception?.let {
                     throw it
                 }
             }
             storageReference.downloadUrl
-        }?.addOnCompleteListener { task ->
+        }.addOnCompleteListener { task ->
             if (task.isSuccessful){
                 uploadImageUri = task.result
                 imageUrl = uploadImageUri.toString()
@@ -141,17 +141,17 @@ class FirebaseModel {
         val profileImageName = "$currentUser+.jpg"
         val storageReference = FirebaseStorage.getInstance().reference
             .child("profileImage").child(profileImageName)
-        var uploadTask = profileImage?.let { it ->
+        val uploadTask = profileImage.let { it ->
             storageReference.putFile(it)
         }
-        val urlTask =  uploadTask?.continueWithTask { task ->
+        val urlTask = uploadTask?.continueWithTask { task ->
             if (!task.isSuccessful){
                 task.exception?.let {
                     throw it
                 }
             }
             storageReference.downloadUrl
-        }?.addOnCompleteListener { task ->
+        }.addOnCompleteListener { task ->
             if (task.isSuccessful){
                 profileImageUri = task.result!!
                 profileImageUrl = profileImageUri.toString()
@@ -182,7 +182,7 @@ class FirebaseModel {
 
     private fun addUserToDatabase(name: String, email: String, currentUid: String) {
         db.firestoreSettings = settings
-        user = UserModel(name, email, "gs://gallerio-e24d1.appspot.com/")
+        user = UserModel(name, email, "gs://gallerio-e24d1.appspot.com/profileImage")
         db.collection("UsersMainActivity").document(currentUid).set(user)
     }
 

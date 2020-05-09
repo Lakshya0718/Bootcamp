@@ -39,7 +39,7 @@ class FragmentAccount: Fragment() {
         mCategoryViewModel = ViewModelProvider(this).get(FirebaseAuthViewModel::class.java)
 
 
-        var view: View = inflater.inflate(R.layout.fragment_account, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_account, container, false)
 
         profileImageView = view.findViewById(R.id.profileImageView)
         val mName: AppCompatTextView = view.findViewById(R.id.userName)
@@ -70,7 +70,7 @@ class FragmentAccount: Fragment() {
 
 
     private fun selectImage() {
-        val fragmentAddProfileImageDialog: FragmentAddProfileImageDialog =
+        val fragmentAddProfileImageDialog =
             FragmentAddProfileImageDialog()
         fragmentManager?.let { it -> fragmentAddProfileImageDialog.show(it, "AddProfileImageFragment") }
     }

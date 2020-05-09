@@ -42,7 +42,7 @@ class FragmentTimeline : Fragment() {
 
         val view: View = inflater.inflate(R.layout.fragment_timeline, container, false)
 
-        val mRecyclerView: RecyclerView? = view?.findViewById(R.id.recyclerView)
+        val mRecyclerView: RecyclerView? = view.findViewById(R.id.recyclerView)
 
         val mLayoutManager = LinearLayoutManager(context)
         mRecyclerView?.layoutManager = mLayoutManager
