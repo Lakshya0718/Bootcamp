@@ -14,14 +14,14 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/timelineImage"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"/>
+            android:layout_height="wrap_content"
+            android:scaleType="center"/>
 
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"/>
+            android:layout_height="wrap_content"
+            android:scaleType="center"/>
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -7,9 +7,9 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.firestore.DocumentSnapshot
 
-class FirebaseAuthViewModel : ViewModel() {
+class FirebaseAuthViewModel(repository: Repository) : ViewModel() {
 
-    private val TAG = "FIRESTORE_VIEW_MODEL"
+    private val TAG = "FIRESTORE_AUTH_VIEW_MODEL"
 
     private val repository: Repository =
         Repository()

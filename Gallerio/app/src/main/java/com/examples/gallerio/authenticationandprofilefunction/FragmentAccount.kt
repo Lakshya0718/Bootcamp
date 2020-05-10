@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.examples.gallerio.R
 import com.examples.gallerio.activities.MainActivity
 import com.examples.gallerio.firebasefunction.FirebaseAuthViewModel
+import com.examples.gallerio.firebasefunction.FirebaseCategoryViewModel
+import com.examples.gallerio.repository.MyViewModelFactory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
@@ -20,7 +22,10 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class FragmentAccount: Fragment() {
 
-    private lateinit var mauthviewmodel: FirebaseAuthViewModel
+    private val mauthviewmodel by lazy {
+        ViewModelProvider(this, MyViewModelFactory()).get(FirebaseAuthViewModel::class.java)
+
+    }
 
     var db: FirebaseFirestore = FirebaseFirestore.getInstance()
     var mAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -33,8 +38,6 @@ class FragmentAccount: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        mauthviewmodel = ViewModelProvider(this).get(FirebaseAuthViewModel::class.java)
 
 
         val view: View = inflater.inflate(R.layout.fragment_account, container, false)

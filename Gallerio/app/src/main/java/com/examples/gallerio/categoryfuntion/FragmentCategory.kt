@@ -11,12 +11,16 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.examples.gallerio.R
 import com.examples.gallerio.firebasefunction.FirebaseCategoryViewModel
+import com.examples.gallerio.repository.MyViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_category.*
 
 class FragmentCategory : Fragment() {
 
-    private lateinit var mCategoryViewModel: FirebaseCategoryViewModel
+    private val mCategoryViewModel by lazy {
+        ViewModelProvider(this, MyViewModelFactory()).get(FirebaseCategoryViewModel::class.java)
+
+    }
 
     lateinit var mAdapterCategory: AdapterCategory
 
@@ -28,7 +32,6 @@ class FragmentCategory : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_category, container, false)
         val recylerView: RecyclerView = view.findViewById(R.id.mainCategoryList)
 
-        mCategoryViewModel = ViewModelProvider(this).get(FirebaseCategoryViewModel::class.java)
         mAdapterCategory =
             AdapterCategory(this.context!!, this)
 

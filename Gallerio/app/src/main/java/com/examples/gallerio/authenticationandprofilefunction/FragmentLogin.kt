@@ -17,12 +17,19 @@ import androidx.lifecycle.ViewModelProvider
 import com.examples.gallerio.R
 import com.examples.gallerio.activities.MainActivity
 import com.examples.gallerio.firebasefunction.FirebaseAuthViewModel
+import com.examples.gallerio.firebasefunction.FirebaseCategoryViewModel
+import com.examples.gallerio.repository.MyViewModelFactory
 import com.google.firebase.auth.FirebaseAuth
 
 
 class FragmentLogin : Fragment() {
 
-    private lateinit var mViewModel: FirebaseAuthViewModel
+
+    private val mViewModel by lazy {
+        ViewModelProvider(this, MyViewModelFactory()).get(FirebaseAuthViewModel::class.java)
+
+    }
+
     lateinit var mAuth: FirebaseAuth
     private val forgetPasswordFragment =
         FragmentForgetPassword()
@@ -34,8 +41,6 @@ class FragmentLogin : Fragment() {
 
         mAuth = FirebaseAuth.getInstance()
         val view: View = inflater.inflate(R.layout.fragment_login, container, false)
-
-        mViewModel = ViewModelProvider(this).get(FirebaseAuthViewModel::class.java)
 
         val loginProgress: ProgressBar = view.findViewById(R.id.loginProgress)
         var emailTextView: AppCompatEditText = view.findViewById(R.id.email)

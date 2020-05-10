@@ -12,9 +12,9 @@ import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 
-class FirebaseImageViewModel : ViewModel() {
+class FirebaseImageViewModel(repository: Repository) : ViewModel() {
 
-    private val TAG = "FIRESTORE_VIEW_MODEL"
+    private val TAG = "FIRESTORE_IMAGE_VIEW_MODEL"
 
     private val repository: Repository =
         Repository()

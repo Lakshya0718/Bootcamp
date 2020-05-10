@@ -11,8 +11,8 @@ import com.examples.gallerio.repository.Repository
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.QuerySnapshot
 
-class FirebaseCategoryViewModel : ViewModel() {
-    private val TAG = "FIRESTORE_VIEW_MODEL"
+class FirebaseCategoryViewModel(repository: Repository) : ViewModel() {
+    private val TAG = "FIRESTORE_CATEGORY_VIEW_MODEL"
 
     private val repository: Repository =
         Repository()

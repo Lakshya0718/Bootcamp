@@ -15,13 +15,18 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.examples.gallerio.R
+import com.examples.gallerio.firebasefunction.FirebaseCategoryViewModel
 import com.examples.gallerio.firebasefunction.FirebaseImageViewModel
+import com.examples.gallerio.repository.MyViewModelFactory
 import java.io.ByteArrayOutputStream
 
 
 class FragmentAddimageDialog : DialogFragment() {
 
-    private lateinit var mViewModel: FirebaseImageViewModel
+    private val mViewModel by lazy {
+        ViewModelProvider(this, MyViewModelFactory()).get(FirebaseImageViewModel::class.java)
+
+    }
 
     private var imageUri: Uri? = null
 
@@ -30,7 +35,6 @@ class FragmentAddimageDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        mViewModel = ViewModelProvider(this).get(FirebaseImageViewModel::class.java)
 
         val positionBundle: Bundle? = arguments
         val categoryName: String = positionBundle?.get("categoryName") as String

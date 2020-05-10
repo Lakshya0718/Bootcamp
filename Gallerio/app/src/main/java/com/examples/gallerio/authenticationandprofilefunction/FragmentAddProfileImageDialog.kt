@@ -14,17 +14,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.examples.gallerio.R
 import com.examples.gallerio.firebasefunction.FirebaseAuthViewModel
+import com.examples.gallerio.firebasefunction.FirebaseCategoryViewModel
+import com.examples.gallerio.repository.MyViewModelFactory
+import kotlinx.android.synthetic.main.fragment_account.*
 import java.io.ByteArrayOutputStream
 
 
 class FragmentAddProfileImageDialog : DialogFragment() {
 
-    private lateinit var mViewModel: FirebaseAuthViewModel
+    private val mViewModel by lazy {
+        ViewModelProvider(this, MyViewModelFactory()).get(FirebaseAuthViewModel::class.java)
 
+    }
 
     private var profileImageUri: Uri? = null
 
@@ -34,13 +40,11 @@ class FragmentAddProfileImageDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        mViewModel = ViewModelProvider(this).get(FirebaseAuthViewModel::class.java)
 
         val view = inflater.inflate(R.layout.fragment_add_profile_image_dialog, container, false)
 
         val takePhotoBtn: AppCompatButton = view.findViewById(R.id.takePhoto)
         val selectPhotoBtn: AppCompatButton = view.findViewById(R.id.selectImage)
-
         val addBtn: AppCompatButton = view.findViewById(R.id.addDialogBtn)
         val cancelBtn: AppCompatButton = view.findViewById(R.id.cancelDialogBtn)
 
@@ -81,6 +85,7 @@ class FragmentAddProfileImageDialog : DialogFragment() {
                 1 -> {
                     var photo: Bitmap = data?.extras?.get("data") as Bitmap
                     profileImageUri = getImageUri(context, photo)
+                    profileImageView.setImageURI(profileImageUri)
 
                 }
                 2 -> {

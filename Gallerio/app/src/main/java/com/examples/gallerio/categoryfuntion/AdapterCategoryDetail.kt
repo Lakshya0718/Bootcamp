@@ -63,7 +63,7 @@ class AdapterCategoryDetail(private val mContext: Context,
         }
 
         holder.menuBtn.setOnClickListener {
-            val popupMenu: PopupMenu = PopupMenu(it.context, holder.menuBtn)
+            val popupMenu = PopupMenu(it.context, holder.menuBtn)
             popupMenu.inflate(R.menu.popup_menu)
             popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
 

@@ -24,10 +24,17 @@
             app:titleEnabled="true">
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-
-
     </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/placeholderText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/accent"
+        android:text="@string/no_data_available"
+        android:layout_centerInParent="true" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

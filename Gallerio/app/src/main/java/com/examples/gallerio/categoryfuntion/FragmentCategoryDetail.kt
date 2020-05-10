@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.examples.gallerio.R
 import com.examples.gallerio.firebasefunction.FirebaseCategoryViewModel
+import com.examples.gallerio.firebasefunction.FirebaseImageViewModel
+import com.examples.gallerio.repository.MyViewModelFactory
 import com.examples.gallerio.timelineandimagefuntion.FragmentAddimageDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
@@ -20,7 +22,10 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 
 class FragmentCategoryDetail : Fragment() {
 
-    private lateinit var mCategoryViewModel: FirebaseCategoryViewModel
+    private val mCategoryViewModel by lazy {
+        ViewModelProvider(this, MyViewModelFactory()).get(FirebaseCategoryViewModel::class.java)
+
+    }
 
     var db: FirebaseFirestore = FirebaseFirestore.getInstance()
     var mAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -36,8 +41,6 @@ class FragmentCategoryDetail : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        mCategoryViewModel = ViewModelProvider(this).get(FirebaseCategoryViewModel::class.java)
 
         db.firestoreSettings = settings
 
@@ -62,7 +65,6 @@ class FragmentCategoryDetail : Fragment() {
                 mAdapterCategoryDetail.setImageData(it)
                 recyclerView.adapter = mAdapterCategoryDetail
                 recyclerView.layoutManager = GridLayoutManager(context, 2)
-//                recyclerView.layoutManager = StaggeredGridLayoutManager(2, 1)
             }
         })
 

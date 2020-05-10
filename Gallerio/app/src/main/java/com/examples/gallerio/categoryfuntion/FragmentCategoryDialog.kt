@@ -15,6 +15,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.examples.gallerio.R
 import com.examples.gallerio.firebasefunction.FirebaseCategoryViewModel
+import com.examples.gallerio.repository.MyViewModelFactory
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,7 +24,11 @@ import com.google.firebase.storage.FirebaseStorage
 
 class FragmentCategoryDialog : DialogFragment() {
 
-    private lateinit var mCategoryViewModel: FirebaseCategoryViewModel
+    private val mCategoryViewModel by lazy {
+        ViewModelProvider(this, MyViewModelFactory()).get(FirebaseCategoryViewModel::class.java)
+
+    }
+
 
     private var mAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private var storageReference = FirebaseStorage.getInstance().reference
@@ -50,8 +55,6 @@ class FragmentCategoryDialog : DialogFragment() {
             Log.d("DocumentSize", documentSize.toString())
             Log.d("categoryId", categoryId)
         }
-
-        mCategoryViewModel = ViewModelProvider(this).get(FirebaseCategoryViewModel::class.java)
 
         var rootView: View = inflater.inflate(R.layout.fragment_category_dialoge, container, true)
 

@@ -17,13 +17,16 @@ import androidx.lifecycle.ViewModelProvider
 import com.examples.gallerio.R
 import com.examples.gallerio.activities.MainActivity
 import com.examples.gallerio.firebasefunction.FirebaseAuthViewModel
+import com.examples.gallerio.repository.MyViewModelFactory
 import kotlinx.android.synthetic.main.fragment_signup.*
 
 
 class FragmentSignup : Fragment() {
 
-    private lateinit var mViewModel: FirebaseAuthViewModel
+    private val mViewModel by lazy {
+        ViewModelProvider(this, MyViewModelFactory()).get(FirebaseAuthViewModel::class.java)
 
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,7 +34,6 @@ class FragmentSignup : Fragment() {
 
         val view: View = inflater.inflate(R.layout.fragment_signup, container, false)
 
-        mViewModel = ViewModelProvider(this).get(FirebaseAuthViewModel::class.java)
 
         val loginProgress: ProgressBar = view.findViewById(R.id.loginProgress1)
 
