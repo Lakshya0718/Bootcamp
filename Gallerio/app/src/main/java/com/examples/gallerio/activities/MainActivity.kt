@@ -6,7 +6,7 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.examples.gallerio.fragments.FragmentLogin
+import com.examples.gallerio.authenticationandprofilefunction.FragmentLogin
 import com.examples.gallerio.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -37,6 +37,4 @@ class MainActivity : AppCompatActivity() {
             }
         }, 3000)
     }
-
-
 }

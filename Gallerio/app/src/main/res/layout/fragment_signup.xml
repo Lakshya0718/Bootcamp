@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:padding="20dp"
     android:background="@drawable/gradient"
-    tools:context=".fragments.FragmentSignup">
+    tools:context=".authenticationandprofilefunction.FragmentSignup">
 
 <ImageView
     android:layout_width="match_parent"

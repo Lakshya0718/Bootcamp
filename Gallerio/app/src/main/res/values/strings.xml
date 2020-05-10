@@ -32,4 +32,5 @@
     <string name="enter_category_name">Enter Category Name</string>
     <string name="category_name">Category Name</string>
     <string name="_8942">⋮</string>
+    <string name="no_data_available">No data available</string>
 </resources>

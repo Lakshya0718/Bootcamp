@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.FragmentTimeline">
+    tools:context=".timelineandimagefuntion.FragmentTimeline">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -23,14 +23,9 @@
             app:title="Timeline"
             app:titleEnabled="true">
 
-            <androidx.appcompat.widget.Toolbar
-                style="@style/TextAppearance.AppCompat.Display1"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="parallax"
-                app:title="Timeline" />
-
         </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -42,5 +37,12 @@
         android:padding="5dp"
         android:background="@color/whiteLight"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+
+    <androidx.appcompat.widget.Toolbar
+        style="@style/TextAppearance.AppCompat.Display1"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="parallax"
+        app:title="Timeline" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.examples.gallerio.fragments.FragmentAccount
-import com.examples.gallerio.fragments.FragmentCategory
+import com.examples.gallerio.authenticationandprofilefunction.FragmentAccount
+import com.examples.gallerio.categoryfuntion.FragmentCategory
 import com.examples.gallerio.R
-import com.examples.gallerio.fragments.FragmentTimeline
+import com.examples.gallerio.timelineandimagefuntion.FragmentTimeline
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_mainmenu.*

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.FragmentCategory">
+    tools:context=".categoryfuntion.FragmentCategory">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/appBarToolBar"
@@ -24,6 +24,16 @@
         android:background="@drawable/gradient"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:layout_below="@id/appBarToolBar"/>
+
+    <TextView
+        android:id="@+id/placeholderText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:text="@string/no_data_available"
+        android:layout_centerInParent="true" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addCategory"

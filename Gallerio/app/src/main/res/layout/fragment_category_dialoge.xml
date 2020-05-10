@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:padding="5dp"
     android:background="@color/white"
-    tools:context=".fragments.FragmentCategoryDialog">
+    tools:context=".categoryfuntion.FragmentCategoryDialog">
 
         <TextView
             android:id="@+id/dialogtitle"
