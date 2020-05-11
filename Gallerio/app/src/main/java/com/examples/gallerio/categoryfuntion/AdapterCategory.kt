@@ -2,7 +2,6 @@ package com.examples.gallerio.categoryfuntion
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,10 +13,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.examples.gallerio.R
 import com.squareup.picasso.Picasso
 
-class AdapterCategory(private val mContext: Context, fragmentCategory: FragmentCategory): RecyclerView.Adapter<AdapterCategory.ViewHolder>() {
+class AdapterCategory(
+    private val mContext: Context,
+    fragmentCategory: FragmentCategory
+): RecyclerView.Adapter<AdapterCategory.ViewHolder>() {
 
     private lateinit var mCategoryDataSet: List<CategoryModel>
-    private var fragmentCategory: FragmentCategory = fragmentCategory
 
     fun setCategories(category:List<CategoryModel>){
         mCategoryDataSet = category
@@ -50,14 +51,13 @@ class AdapterCategory(private val mContext: Context, fragmentCategory: FragmentC
 
     private fun goToDetails(catId: String?, it: View) {
 
-        var categoryId: Bundle = Bundle()
+        val categoryId = Bundle()
 
         categoryId.putString("categoryName", catId)
-        Log.d("CategoryAdapter: CatID", catId)
 
         val activity: AppCompatActivity = it.context as AppCompatActivity
         val fragmentTransaction: FragmentTransaction = activity.supportFragmentManager.beginTransaction()
-        val fragmentCategoryDetail: FragmentCategoryDetail =
+        val fragmentCategoryDetail =
             FragmentCategoryDetail()
         fragmentCategoryDetail.arguments = categoryId
 

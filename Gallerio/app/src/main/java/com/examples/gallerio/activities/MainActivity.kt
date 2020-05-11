@@ -24,17 +24,18 @@ class MainActivity : AppCompatActivity() {
         handler!!.postDelayed(Runnable {
             val currentUser: FirebaseUser? = mAuth!!.currentUser
             if (currentUser != null) {
-                val intent = Intent(this, mainmenu::class.java)
+                val intent = Intent(this, Mainmenu::class.java)
                 startActivity(intent)
                 finish()
-            } else {
-                var fragmentManager: FragmentManager = supportFragmentManager
-                var fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-                var loginFragment =
-                    FragmentLogin()
+            }
+            else {
+                val fragmentManager: FragmentManager = supportFragmentManager
+                val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+                val loginFragment = FragmentLogin()
                 fragmentTransaction.replace(R.id.framecontainer, loginFragment)
                 fragmentTransaction.commit()
             }
         }, 3000)
+        finishActivity(0)
     }
 }

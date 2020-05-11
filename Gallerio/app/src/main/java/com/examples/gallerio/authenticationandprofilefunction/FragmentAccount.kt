@@ -1,7 +1,12 @@
 package com.examples.gallerio.authenticationandprofilefunction
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore.Images.Media.insertImage
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +18,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.examples.gallerio.R
 import com.examples.gallerio.activities.MainActivity
 import com.examples.gallerio.firebasefunction.FirebaseAuthViewModel
-import com.examples.gallerio.firebasefunction.FirebaseCategoryViewModel
 import com.examples.gallerio.repository.MyViewModelFactory
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import  com.examples.gallerio.authenticationandprofilefunction.FragmentAddProfileImageDialog
+import kotlinx.android.synthetic.main.fragment_account.*
+import java.io.ByteArrayOutputStream
 
 class FragmentAccount: Fragment() {
 
@@ -27,12 +33,9 @@ class FragmentAccount: Fragment() {
 
     }
 
-    var db: FirebaseFirestore = FirebaseFirestore.getInstance()
     var mAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    var currentUser: String = mAuth.currentUser?.uid.toString()
 
-
-    private lateinit var  profileImageView: CircleImageView
+    private lateinit var profileImageView: CircleImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,8 +54,9 @@ class FragmentAccount: Fragment() {
             val user = it.toObject(UserModel::class.java)
             mName.text = user?.name
             mEmail.text = user?.email
-            Log.d("ProfileImage",""+ user?.profileImageUrl)
-            Picasso.get().load(user?.profileImageUrl).placeholder(R.color.placeholderBackground).into(profileImageView)
+            Log.d("ProfileImage", "" + user?.profileImageUrl)
+            Picasso.get().load(user?.profileImageUrl).placeholder(R.color.placeholderBackground)
+                .into(profileImageView)
 
         }
 
@@ -64,17 +68,20 @@ class FragmentAccount: Fragment() {
             mauthviewmodel.logout()
             startActivity(Intent(activity, MainActivity::class.java))
 
+
         }
 
         return view
     }
 
-
-
     private fun selectImage() {
         val fragmentAddProfileImageDialog =
             FragmentAddProfileImageDialog()
-        fragmentManager?.let { it -> fragmentAddProfileImageDialog.show(it, "AddProfileImageFragment") }
+        childFragmentManager.let {
+            fragmentAddProfileImageDialog.show(
+                it,
+                "AddProfileImageFragment"
+            )
+        }
     }
-
 }

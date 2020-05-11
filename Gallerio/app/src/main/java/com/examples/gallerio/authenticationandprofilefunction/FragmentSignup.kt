@@ -59,6 +59,9 @@ class FragmentSignup : Fragment() {
                     loginProgress1.alpha = 0F
                 }
 
+                if (!email.contains("@") || !email!!.contains(".com")){
+                    Toast.makeText(activity, "Enter a valid email address", Toast.LENGTH_SHORT).show()
+                }
                 else {
                     mViewModel.signin(email, password, name)
                     loginProgress1.alpha = 0F
@@ -81,11 +84,10 @@ class FragmentSignup : Fragment() {
     }
 
     private fun moveToLogin() {
-        val fragmentManager: FragmentManager? = fragmentManager
-        val transaction: FragmentTransaction? = fragmentManager?.beginTransaction()
+        val childfragmentManager: FragmentManager? = fragmentManager
+        val transaction: FragmentTransaction? = childfragmentManager?.beginTransaction()
         val loginFragment = FragmentLogin()
         transaction?.replace(R.id.framecontainer, loginFragment)
         transaction?.commit()
     }
-
 }

@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.examples.gallerio.authenticationandprofilefunction
 
 import android.app.Activity
@@ -7,22 +5,19 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.MediaStore.Images.Media.insertImage
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.examples.gallerio.R
 import com.examples.gallerio.firebasefunction.FirebaseAuthViewModel
-import com.examples.gallerio.firebasefunction.FirebaseCategoryViewModel
 import com.examples.gallerio.repository.MyViewModelFactory
-import kotlinx.android.synthetic.main.fragment_account.*
 import java.io.ByteArrayOutputStream
+import android.os.Bundle as Bundle
 
 
 class FragmentAddProfileImageDialog : DialogFragment() {
@@ -40,19 +35,18 @@ class FragmentAddProfileImageDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
         val view = inflater.inflate(R.layout.fragment_add_profile_image_dialog, container, false)
 
         val takePhotoBtn: AppCompatButton = view.findViewById(R.id.takePhoto)
         val selectPhotoBtn: AppCompatButton = view.findViewById(R.id.selectImage)
         val addBtn: AppCompatButton = view.findViewById(R.id.addDialogBtn)
         val cancelBtn: AppCompatButton = view.findViewById(R.id.cancelDialogBtn)
-
         cancelBtn.setOnClickListener {
             dialog?.dismiss()
         }
 
         takePhotoBtn.setOnClickListener {
+
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(intent, 1)
             takePhotoBtn.isEnabled = false
@@ -70,12 +64,17 @@ class FragmentAddProfileImageDialog : DialogFragment() {
 
         addBtn.setOnClickListener {
             profileImageUri?.let { it1 -> mViewModel.addProfileImage(it1) }
+            profilepicupdate()
             dialog?.dismiss()
-        }
-
+            }
 
         return view
     }
+
+    private fun profilepicupdate() {
+        val profilepic = profileImageUri.toString()
+
+   }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -83,10 +82,8 @@ class FragmentAddProfileImageDialog : DialogFragment() {
         if (resultCode == Activity.RESULT_OK){
             when(requestCode){
                 1 -> {
-                    var photo: Bitmap = data?.extras?.get("data") as Bitmap
+                    val photo: Bitmap = data?.extras?.get("data") as Bitmap
                     profileImageUri = getImageUri(context, photo)
-                    profileImageView.setImageURI(profileImageUri)
-
                 }
                 2 -> {
                     profileImageUri = data?.data!!
@@ -96,15 +93,14 @@ class FragmentAddProfileImageDialog : DialogFragment() {
     }
 
     private fun getImageUri(context: Context?, photo: Bitmap): Uri {
-        val bytes: ByteArrayOutputStream = ByteArrayOutputStream()
+        val bytes = ByteArrayOutputStream()
         photo.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path: String = insertImage(context?.contentResolver, photo, getRandomString(8), null)
-        val image = Uri.parse(path)
-        return image
+        return Uri.parse(path)
 
     }
 
-    fun getRandomString(length: Int) : String {
+    private fun getRandomString(length: Int) : String {
         val allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
         return (1..length)
             .map { allowedChars.random() }
@@ -114,12 +110,11 @@ class FragmentAddProfileImageDialog : DialogFragment() {
     override fun onStart() {
         super.onStart()
 
-        var dialog = dialog
+        val dialog = dialog
         if (dialog!=null){
             val width: Int = ViewGroup.LayoutParams.MATCH_PARENT
             val height: Int = ViewGroup.LayoutParams.WRAP_CONTENT
             dialog.window?.setLayout(width,height)
         }
     }
-
 }

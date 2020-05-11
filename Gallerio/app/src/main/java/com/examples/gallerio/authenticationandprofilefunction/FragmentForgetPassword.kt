@@ -24,7 +24,7 @@ class FragmentForgetPassword : Fragment() {
         val output: View = inflater.inflate(R.layout.fragment_forget_password, framecontainer, false)
         mAuth = FirebaseAuth.getInstance()
 
-        var resetbtn: AppCompatButton = output.findViewById(R.id.btn_reset_password)
+        val resetbtn: AppCompatButton = output.findViewById(R.id.btn_reset_password)
 
         resetbtn.setOnClickListener(View.OnClickListener {
             email = output.user_email.text.toString()

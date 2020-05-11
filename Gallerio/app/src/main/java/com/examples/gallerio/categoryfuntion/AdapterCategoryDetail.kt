@@ -1,6 +1,5 @@
 package com.examples.gallerio.categoryfuntion
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,8 +18,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 
 
-class AdapterCategoryDetail(private val mContext: Context,
-                            private var fragmentCategoryDetail: FragmentCategoryDetail
+class AdapterCategoryDetail(
+    private var fragmentCategoryDetail: FragmentCategoryDetail
 ): RecyclerView.Adapter<AdapterCategoryDetail.ViewHolder>() {
 
     private lateinit var mCategoryViewModel: FirebaseCategoryViewModel
@@ -34,10 +33,7 @@ class AdapterCategoryDetail(private val mContext: Context,
     }
 
     var mAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    var currentUser: String = mAuth.currentUser?.uid.toString()
 
-
-    var position: Int? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -83,13 +79,13 @@ class AdapterCategoryDetail(private val mContext: Context,
     }
 
     private fun getFullScreen(imageUrl: String?, documentId: String?, it: View) {
-        var image: Bundle = Bundle()
+        val image = Bundle()
         image.putString("imageUrl", imageUrl)
         image.putString("documentId", documentId)
 
         val activity: AppCompatActivity = it.context as AppCompatActivity
         val fragmentTransaction: FragmentTransaction = activity.supportFragmentManager.beginTransaction()
-        val fullImageFullImageView: FragmentFullImageView =
+        val fullImageFullImageView =
             FragmentFullImageView(
                 activity
             )

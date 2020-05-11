@@ -70,6 +70,7 @@ class FragmentLogin : Fragment() {
                 loginProgress.alpha = 0F
                 Toast.makeText(activity, "Invalid Credentials!", Toast.LENGTH_SHORT).show()
             }
+
         }
 
         forgetpasstxt.setOnClickListener {
@@ -87,8 +88,8 @@ class FragmentLogin : Fragment() {
     }
 
     private fun moveToSigin() {
-        val fragmentManager: FragmentManager? = fragmentManager
-        val transaction: FragmentTransaction? = fragmentManager?.beginTransaction()
+        val childfragmentManager: FragmentManager? = fragmentManager
+        val transaction: FragmentTransaction? = childfragmentManager?.beginTransaction()
         val signupFragment = FragmentSignup()
         transaction?.replace(R.id.framecontainer, signupFragment)
         transaction?.commit()

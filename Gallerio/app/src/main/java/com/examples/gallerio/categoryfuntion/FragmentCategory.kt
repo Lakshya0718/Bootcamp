@@ -48,13 +48,13 @@ class FragmentCategory : Fragment() {
         })
 
 
-        var addCat: FloatingActionButton = view.findViewById(R.id.addCategory)
+        val addCat: FloatingActionButton = view.findViewById(R.id.addCategory)
 
         addCat.setOnClickListener {
 
                 val categoryDialogCategoryDialog: FragmentCategoryDialog =
                     FragmentCategoryDialog()
-                fragmentManager?.let { it1 -> categoryDialogCategoryDialog.show(it1, "CategoryDialoge") }
+            childFragmentManager.let { it1 -> categoryDialogCategoryDialog.show(it1, "CategoryDialoge") }
 
             }
 

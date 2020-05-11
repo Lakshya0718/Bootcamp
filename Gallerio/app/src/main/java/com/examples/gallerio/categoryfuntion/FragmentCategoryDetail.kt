@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.examples.gallerio.R
 import com.examples.gallerio.firebasefunction.FirebaseCategoryViewModel
-import com.examples.gallerio.firebasefunction.FirebaseImageViewModel
 import com.examples.gallerio.repository.MyViewModelFactory
 import com.examples.gallerio.timelineandimagefuntion.FragmentAddimageDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -57,7 +56,6 @@ class FragmentCategoryDetail : Fragment() {
 
         mAdapterCategoryDetail =
             AdapterCategoryDetail(
-                this.context!!,
                 this
             )
         mCategoryViewModel.loadCategoryDetail(categoryName).observe(viewLifecycleOwner, Observer { categoryImages ->
