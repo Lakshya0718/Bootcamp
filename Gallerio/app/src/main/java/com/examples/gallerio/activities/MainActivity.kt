@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                 fragmentTransaction.replace(R.id.framecontainer, loginFragment)
                 fragmentTransaction.commit()
             }
-        }, 3000)
+        }, 2000)
         finishActivity(0)
     }
 }

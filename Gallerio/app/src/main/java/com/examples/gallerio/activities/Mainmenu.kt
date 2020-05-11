@@ -32,34 +32,33 @@ class Mainmenu : AppCompatActivity(),BottomNavigationView.OnNavigationItemSelect
         FragmentAccount()
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      setContentView(R.layout.activity_mainmenu)
+        setContentView(R.layout.activity_mainmenu)
         mAuth = FirebaseAuth.getInstance()
 
         setSupportActionBar(toolbar)
         supportActionBar!!.title = "Categories"
 
 
-    MNV.setOnNavigationItemSelectedListener(this)
-        transaction.replace(R.id.mainContainer,categoryFragment)
+        MNV.setOnNavigationItemSelectedListener(this)
+        transaction.replace(R.id.mainContainer, categoryFragment)
         transaction.commit()
 
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val manager1 = supportFragmentManager
-        val transaction1 : FragmentTransaction = manager1.beginTransaction()
+        val transaction1: FragmentTransaction = manager1.beginTransaction()
 
         when (item.itemId) {
             R.id.home1 -> {
                 supportActionBar!!.title = "Categories"
-                transaction1.replace(R.id.mainContainer,categoryFragment)
+                transaction1.replace(R.id.mainContainer, categoryFragment)
             }
             R.id.timeline -> {
                 supportActionBar!!.title = "Your Timeline"
-                transaction1.replace(R.id.mainContainer,timeLineFragment)
+                transaction1.replace(R.id.mainContainer, timeLineFragment)
             }
             R.id.profile -> {
                 supportActionBar!!.title = "Profile"
@@ -71,20 +70,26 @@ class Mainmenu : AppCompatActivity(),BottomNavigationView.OnNavigationItemSelect
         return true
 
     }
+
     override fun onStart() {
         super.onStart()
 
         this.permissionCheck()
 
-        if (!this.isConnected()){
-            Toast.makeText(this, "No internet Connection, Please turn on the Internet!", Toast.LENGTH_SHORT).show()
-        }else {
+        if (!this.isConnected()) {
+            Toast.makeText(
+                this,
+                "No internet Connection, Please turn on the Internet!",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
 
             val currentUser: FirebaseUser? = mAuth.currentUser
-            if (currentUser == null){
+            if (currentUser == null) {
                 startActivity(Intent(this, Mainmenu::class.java))
                 finish()
-            }}
+            }
+        }
     }
 
     override fun onRequestPermissionsResult(
@@ -94,21 +99,12 @@ class Mainmenu : AppCompatActivity(),BottomNavigationView.OnNavigationItemSelect
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(this, "Permission Granted!!", Toast.LENGTH_SHORT).show()
         }
     }
-
-    //when back pressed to confirm whether accidently pressed
-    private val exit = false
-    override fun onBackPressed() {
-
-        val intent = Intent(applicationContext, Mainmenu::class.java)
-        startActivity(intent)
-        finish()
-
-    }
 }
+
 
 
 

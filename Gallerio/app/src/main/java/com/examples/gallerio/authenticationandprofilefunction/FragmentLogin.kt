@@ -2,6 +2,7 @@ package com.examples.gallerio.authenticationandprofilefunction
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +18,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.examples.gallerio.R
 import com.examples.gallerio.activities.MainActivity
 import com.examples.gallerio.firebasefunction.FirebaseAuthViewModel
-import com.examples.gallerio.firebasefunction.FirebaseCategoryViewModel
 import com.examples.gallerio.repository.MyViewModelFactory
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.fragment_login.*
 
 
 class FragmentLogin : Fragment() {
@@ -43,10 +44,10 @@ class FragmentLogin : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_login, container, false)
 
         val loginProgress: ProgressBar = view.findViewById(R.id.loginProgress)
-        var emailTextView: AppCompatEditText = view.findViewById(R.id.email)
-        var passwordTextView: AppCompatEditText = view.findViewById(R.id.pass)
-        var loginBtn: AppCompatButton = view.findViewById(R.id.loginbtn)
-        var signuptxt: AppCompatTextView = view.findViewById(R.id.signuptxt)
+        val emailTextView: AppCompatEditText = view.findViewById(R.id.email)
+        val passwordTextView: AppCompatEditText = view.findViewById(R.id.pass)
+        val loginBtn: AppCompatButton = view.findViewById(R.id.loginbtn)
+        val signuptxt: AppCompatTextView = view.findViewById(R.id.signuptxt)
         var forgetpasstxt: AppCompatTextView = view.findViewById(R.id.forget)
         loginProgress.alpha = 0F
 
@@ -61,6 +62,7 @@ class FragmentLogin : Fragment() {
                     if (it.isSuccessful){
                         loginProgress.alpha = 0F
                         startActivity(Intent(activity, MainActivity::class.java))
+                        activity?.finish()
                     }else{
                         loginProgress.alpha = 0F
                         Toast.makeText(activity, it.exception?.message.toString(), Toast.LENGTH_SHORT).show()
@@ -70,7 +72,6 @@ class FragmentLogin : Fragment() {
                 loginProgress.alpha = 0F
                 Toast.makeText(activity, "Invalid Credentials!", Toast.LENGTH_SHORT).show()
             }
-
         }
 
         forgetpasstxt.setOnClickListener {
@@ -85,6 +86,7 @@ class FragmentLogin : Fragment() {
         }
 
         return view
+
     }
 
     private fun moveToSigin() {

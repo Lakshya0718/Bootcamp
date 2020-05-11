@@ -67,6 +67,7 @@ class FragmentAccount: Fragment() {
         mLogout.setOnClickListener {
             mauthviewmodel.logout()
             startActivity(Intent(activity, MainActivity::class.java))
+            activity?.finish()
 
 
         }
@@ -83,5 +84,24 @@ class FragmentAccount: Fragment() {
                 "AddProfileImageFragment"
             )
         }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.d("onDetach ", "Detach called")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("onPause", "onPause called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("onStop ", "onStop called")
     }
 }

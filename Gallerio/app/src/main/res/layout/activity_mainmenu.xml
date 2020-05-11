@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     android:orientation="vertical"
-    tools:context=".activities.mainmenu">
+    tools:context=".activities.Mainmenu">
 
     <ImageView
         android:id="@+id/logo"
@@ -21,7 +21,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".5"
+        android:layout_weight=".05"
         android:background="#fff"
         app:layout_collapseMode="pin"
         app:titleTextColor="#ffffff" />

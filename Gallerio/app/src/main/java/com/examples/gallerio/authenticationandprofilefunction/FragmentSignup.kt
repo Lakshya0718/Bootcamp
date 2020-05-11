@@ -2,6 +2,7 @@ package com.examples.gallerio.authenticationandprofilefunction
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import com.examples.gallerio.R
 import com.examples.gallerio.activities.MainActivity
 import com.examples.gallerio.firebasefunction.FirebaseAuthViewModel
 import com.examples.gallerio.repository.MyViewModelFactory
+import com.google.common.base.CaseFormat
 import kotlinx.android.synthetic.main.fragment_signup.*
 
 
@@ -54,12 +56,12 @@ class FragmentSignup : Fragment() {
 
             if (email.isNotEmpty() && password.isNotEmpty() && name.isNotEmpty()){
 
-                if (password.length<8){
+                if (password.length<8 ){
                     Toast.makeText(activity, "Password too short, Minimum 8 characters required", Toast.LENGTH_SHORT).show()
                     loginProgress1.alpha = 0F
                 }
 
-                if (!email.contains("@") || !email!!.contains(".com")){
+                if (!email.contains("@") || !email.contains(".com")){
                     Toast.makeText(activity, "Enter a valid email address", Toast.LENGTH_SHORT).show()
                 }
                 else {
@@ -74,6 +76,7 @@ class FragmentSignup : Fragment() {
                 Toast.makeText(activity, "Invalid Credentials!", Toast.LENGTH_SHORT).show()
 
             }
+            activity?.finish()
         }
 
         loginBtn.setOnClickListener {
@@ -90,4 +93,5 @@ class FragmentSignup : Fragment() {
         transaction?.replace(R.id.framecontainer, loginFragment)
         transaction?.commit()
     }
+
 }
